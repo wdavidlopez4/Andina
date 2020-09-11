@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Andina.Application\Andina.Application.csproj" />
+    <ProjectReference Include="..\Andina.Domain\Andina.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
