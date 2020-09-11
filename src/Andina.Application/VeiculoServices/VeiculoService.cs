@@ -1,5 +1,6 @@
 ﻿using Andina.Application.VeiculoServices.Interfaces;
 using Andina.Domain.Dtos;
+using Andina.Domain.Models;
 using Andina.Domain.Models.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,34 @@ namespace Andina.Application.VeiculoServices
             this.repository = repository;
         }
 
-        public Task<bool> GuardarVeiculo(VeiculoDto veiculoDto)
+        public async Task<bool> GuardarVeiculo(VeiculoDto veiculoDto)
         {
-            throw new NotImplementedException();
+            if(veiculoDto == null)
+            {
+                return false;
+            }
+            else
+            {
+                var modelo = new VeiculoModel
+                {
+                    Marca = veiculoDto.Marca,
+                    Estado = veiculoDto.Estado,
+                    Placa = veiculoDto.Placa
+                };
+
+                var seCreo = await this.repository.Crear<VeiculoModel>(modelo);
+
+                if(seCreo == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            
         }
     }
 }
