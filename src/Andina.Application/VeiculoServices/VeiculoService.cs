@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Andina.Application.VeiculoServices
 {
-    class VeiculoService : IVeiculoService
+    public class VeiculoService : IVeiculoService
     {
         private readonly IRepository repository;
 

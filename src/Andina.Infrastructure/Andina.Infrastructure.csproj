@@ -10,9 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="InfrastructureIOC\" />
-    <Folder Include="InfrastructureMongo\" />
-    <Folder Include="InfrastructureRepository\" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.8" />
+    <PackageReference Include="MongoDB.Driver" Version="2.11.2" />
   </ItemGroup>
 
 </Project>

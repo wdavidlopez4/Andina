@@ -7,6 +7,6 @@ namespace Andina.Domain.Models.Interfaces
 {
     public interface IRepository
     {
-        public Task<T> Crear<T>(T objeto);
+        public Task<T> Crear<T>(T objeto) where T : class;
     }
 }
