@@ -11,5 +11,7 @@ namespace Andina.Domain.Dtos
         public string Marca { get; set; }
 
         public string Estado { get; set; }
+
+        public string Mensaje { get; set; }
     }
 }
