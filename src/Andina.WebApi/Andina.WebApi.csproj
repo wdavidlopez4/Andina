@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Andina.Application\Andina.Application.csproj" />
+    <ProjectReference Include="..\Andina.Domain\Andina.Domain.csproj" />
     <ProjectReference Include="..\Andina.Infrastructure\Andina.Infrastructure.csproj" />
   </ItemGroup>
 
