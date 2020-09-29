@@ -1,7 +1,10 @@
 ﻿using Andina.Domain.Models.Interfaces;
 using Andina.Infrastructure.InfrastructureMongo.Interfaces;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +25,39 @@ namespace Andina.Infrastructure.InfrastructureRepository
             {
                 await contextDb.GetCollection<T>().InsertOneAsync(objeto);
                 return objeto;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<T> Obtener<T>(Guid id) where T : class
+        {
+            try
+            {
+                //creamos un objeto mongo que contiene el id 
+                var objectId = new ObjectId(id.ToString());
+
+                //creamos el filtro
+                FilterDefinition<T> filter = Builders<T>.Filter.Eq("_id", objectId);
+
+                //obtenemos el objeto
+                return await contextDb.GetCollection<T>().FindAsync<T>(filter).Result.FirstOrDefaultAsync();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<T> Obtener<T>(Expression<Func<T, bool>> expression) where T : class
+        {
+            try
+            {
+                return await contextDb.GetCollection<T>().FindAsync<T>(expression).Result.FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {

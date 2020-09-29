@@ -1,6 +1,4 @@
-﻿using Andina.Application.VeiculoServices.Interfaces;
-using Andina.Application.VeiculoServices;
-using Andina.Domain.Models.Interfaces;
+﻿using Andina.Domain.Models.Interfaces;
 using Andina.Infrastructure.InfrastructureMongo;
 using Andina.Infrastructure.InfrastructureMongo.Interfaces;
 using Andina.Infrastructure.InfrastructureRepository;
@@ -10,6 +8,8 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Andina.Application.UsuarioServices.Interfaces;
+using Andina.Application.UsuarioServices.Implementation;
 
 namespace Andina.Infrastructure.InfrastructureIOC
 {
@@ -27,7 +27,7 @@ namespace Andina.Infrastructure.InfrastructureIOC
 
         public static void InyectarServicios(IServiceCollection services)
         {
-            services.AddScoped<IVeiculoService, VeiculoService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
         }
 
         //inyecta la configuracion de la db 

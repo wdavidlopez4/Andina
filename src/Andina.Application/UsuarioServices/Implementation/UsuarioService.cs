@@ -1,0 +1,125 @@
+﻿using Andina.Application.UsuarioServices.Interfaces;
+using Andina.Domain.Dtos;
+using Andina.Domain.Models.Interfaces;
+using Andina.Domain.Models.Usuarios;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Andina.Application.UsuarioServices.Implementation
+{
+    public class UsuarioService : IUsuarioService
+    {
+        private readonly IRepository repository;
+
+        public UsuarioService(IRepository repository)
+        {
+            this.repository = repository;
+        }
+
+        public async Task<bool> GuardarUsuario(UsuarioDto usuarioDto)
+        {
+            //verificamos dto
+            if (usuarioDto != null)
+            {
+                //creamos modelo
+                var usuario = new Usuario
+                {
+                    Nombres = usuarioDto.Nombres,
+                    Apellidos = usuarioDto.Apellidos,
+                    Email = usuarioDto.Email,
+                    Contraseña = usuarioDto.Contraseña,
+                    Rol = usuarioDto.Rol,
+                    NumeroIdentidad = usuarioDto.NumeroIdentidad,
+                    TipoIdentidad = usuarioDto.TipoIdentidad,
+                    FechaExpedicionIdentidad = usuarioDto.FechaExpedicionIdentidad,
+                    FechaDeNacimineto = usuarioDto.FechaDeNacimineto
+
+                };
+
+                //guardamos modelo
+                var UsuarioResult = await this.repository.Crear<Usuario>(usuario);
+
+                //verificamos modelo
+                if (usuario != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public async Task<UsuarioDto> ObtenerUsuario(Guid id)
+        {
+            //obtener modelo
+            var usuario = await this.repository.Obtener<Usuario>(id);
+
+            //verificar modelo
+            if (usuario != null)
+            {
+                //crear dto de modelo y retornarlo
+                return new UsuarioDto
+                {
+                    Nombres = usuario.Nombres,
+                    Apellidos = usuario.Apellidos,
+                    Email = usuario.Email,
+                    Contraseña = usuario.Contraseña,
+                    Rol = usuario.Rol,
+                    NumeroIdentidad = usuario.NumeroIdentidad,
+                    TipoIdentidad = usuario.TipoIdentidad,
+                    FechaExpedicionIdentidad = usuario.FechaExpedicionIdentidad,
+                    FechaDeNacimineto = usuario.FechaDeNacimineto
+                };
+
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        public async Task<UsuarioDto> ObtenerUsuario(string email)
+        {
+            if (email != null)
+            {
+                UsuarioDto usuario = await this.repository.Obtener<UsuarioDto>(x => x.Email == email);
+
+                if (usuario != null)
+                {
+                    return new UsuarioDto
+                    {
+                        Nombres = usuario.Nombres,
+                        Apellidos = usuario.Apellidos,
+                        Email = usuario.Email,
+                        Contraseña = usuario.Contraseña,
+                        Rol = usuario.Rol,
+                        NumeroIdentidad = usuario.NumeroIdentidad,
+                        TipoIdentidad = usuario.TipoIdentidad,
+                        FechaExpedicionIdentidad = usuario.FechaExpedicionIdentidad,
+                        FechaDeNacimineto = usuario.FechaDeNacimineto
+                    };
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+    }
+}

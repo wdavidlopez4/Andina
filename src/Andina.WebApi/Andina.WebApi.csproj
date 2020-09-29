@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Andina.Application\Andina.Application.csproj" />
     <ProjectReference Include="..\Andina.Domain\Andina.Domain.csproj" />
     <ProjectReference Include="..\Andina.Infrastructure\Andina.Infrastructure.csproj" />
