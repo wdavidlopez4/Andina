@@ -15,7 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Andina.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Account")]
     [ApiController]
     public class AccountController : ControllerBase
     {
