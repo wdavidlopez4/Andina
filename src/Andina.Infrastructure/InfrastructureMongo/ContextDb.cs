@@ -14,10 +14,7 @@ namespace Andina.Infrastructure.InfrastructureMongo
         //atributo que representa la db 
         private IMongoDatabase database;
 
-        //nombre de la coleccion
-        private string coleccion;
-
-
+        
         //constructor "llama al connet para conectarse"
         public ContextDb(ISettingsDb SettingsDb)
         {
@@ -32,9 +29,6 @@ namespace Andina.Infrastructure.InfrastructureMongo
             cliente = new MongoClient(SettingsDb.ConnectionString);
             database = cliente.GetDatabase(SettingsDb.DatabaseName);
 
-            //obtenemos el nombre de la coleccion
-            coleccion = SettingsDb.CollectionName;
-
             if (database != null)
             {
                 return true;
@@ -46,7 +40,7 @@ namespace Andina.Infrastructure.InfrastructureMongo
         public IMongoCollection<T> GetCollection<T>() where T : class
         {
             //obtenemos la coleccion de tipo T
-            IMongoCollection<T> Collection = database.GetCollection<T>(coleccion);
+            IMongoCollection<T> Collection = database.GetCollection<T>(typeof(T).Name);
             return Collection;
         }
     }

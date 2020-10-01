@@ -33,7 +33,7 @@ namespace Andina.Infrastructure.InfrastructureIOC
         //inyecta la configuracion de la db 
         public static void InyectarDbSettings(IServiceCollection services, IConfiguration Configuration)
         {
-            //configura y selecciona el fracmento del json
+            //configura y selecciona el fragmento del json
             services.Configure<DbSettings>(
                 Configuration.GetSection(nameof(DbSettings)));
 
