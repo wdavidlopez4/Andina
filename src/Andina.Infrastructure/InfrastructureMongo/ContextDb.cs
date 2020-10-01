@@ -42,7 +42,7 @@ namespace Andina.Infrastructure.InfrastructureMongo
             return false;
         }
 
-        //debolvemos la colleccion
+        //retornamos la colleccion
         public IMongoCollection<T> GetCollection<T>() where T : class
         {
             //obtenemos la coleccion de tipo T

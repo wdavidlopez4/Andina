@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Andina.Infrastructure.InfrastructureMongo
 {
-    public class SettingsDb : ISettingsDb
+    public class DbSettings : ISettingsDb
     {
         public string ConnectionString { get; set; }
 

@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Andina.WebApi.Controllers
 {
+    [Produces("Application/json")]
     [Route("api/Account")]
     [ApiController]
     public class AccountController : ControllerBase
@@ -59,7 +60,7 @@ namespace Andina.WebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usuarioResult = this.usuarioService.ObtenerUsuario(usuarioDto.Email);
+                var usuarioResult = await this.usuarioService.ObtenerUsuario(usuarioDto.Email);
                 if (usuarioResult != null)
                 {
                     return ConstruirToken(usuarioDto);
@@ -80,11 +81,10 @@ namespace Andina.WebApi.Controllers
             //creamos el claims
             var Claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.UniqueName, usuarioDto.Nombres),
-                new Claim(JwtRegisteredClaimNames.UniqueName, usuarioDto.Apellidos),
                 new Claim(JwtRegisteredClaimNames.UniqueName, usuarioDto.Email),
-
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("Nombres", usuarioDto.Nombres),
+                new Claim("Apellidos", usuarioDto.Apellidos)
             };
 
             //creamos la clave la cual tendra una variable de ambiente "Clave secreta" tambien la credencial y el expide

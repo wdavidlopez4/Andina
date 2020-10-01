@@ -34,12 +34,12 @@ namespace Andina.Infrastructure.InfrastructureIOC
         public static void InyectarDbSettings(IServiceCollection services, IConfiguration Configuration)
         {
             //configura y selecciona el fracmento del json
-            services.Configure<SettingsDb>(
-                Configuration.GetSection(nameof(SettingsDb)));
+            services.Configure<DbSettings>(
+                Configuration.GetSection(nameof(DbSettings)));
 
             //inyecta la los datos a la clase dbsettings
             services.AddSingleton<ISettingsDb>(sp =>
-                sp.GetRequiredService<IOptions<SettingsDb>>().Value);
+                sp.GetRequiredService<IOptions<DbSettings>>().Value);
         }
     }
 }
