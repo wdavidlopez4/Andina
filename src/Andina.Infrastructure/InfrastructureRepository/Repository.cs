@@ -2,6 +2,7 @@
 using Andina.Infrastructure.InfrastructureMongo.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -57,11 +58,10 @@ namespace Andina.Infrastructure.InfrastructureRepository
         {
             try
             {
-                return await contextDb.GetCollection<T>().FindAsync<T>(expression).Result.FirstOrDefaultAsync();
+                return await contextDb.GetCollection<T>().AsQueryable().Where(expression).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

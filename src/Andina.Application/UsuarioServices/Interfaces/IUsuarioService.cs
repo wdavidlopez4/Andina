@@ -13,6 +13,6 @@ namespace Andina.Application.UsuarioServices.Interfaces
 
         public Task<bool> GuardarUsuario(UsuarioDto usuarioDto);
 
-        public Task<UsuarioDto> ObtenerUsuario(string email);
+        public Task<UsuarioDto> ObtenerUsuario(string email, string contraseña);
     }
 }

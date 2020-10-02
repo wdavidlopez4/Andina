@@ -89,11 +89,11 @@ namespace Andina.Application.UsuarioServices.Implementation
 
         }
 
-        public async Task<UsuarioDto> ObtenerUsuario(string email)
+        public async Task<UsuarioDto> ObtenerUsuario(string email, string contraseña)
         {
-            if (email != null)
+            if (email != null && contraseña != null)
             {
-                UsuarioDto usuario = await this.repository.Obtener<UsuarioDto>(x => x.Email == email);
+                Usuario usuario = await this.repository.Obtener<Usuario>(x => x.Email == email && x.Contraseña == contraseña);
 
                 if (usuario != null)
                 {

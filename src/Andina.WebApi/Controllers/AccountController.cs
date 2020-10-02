@@ -60,10 +60,10 @@ namespace Andina.WebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usuarioResult = await this.usuarioService.ObtenerUsuario(usuarioDto.Email);
+                var usuarioResult = await this.usuarioService.ObtenerUsuario(usuarioDto.Email, usuarioDto.Contraseña);
                 if (usuarioResult != null)
                 {
-                    return ConstruirToken(usuarioDto);
+                    return ConstruirToken(usuarioResult);
                 }
                 else
                 {
