@@ -24,8 +24,15 @@ namespace Andina.Infrastructure.InfrastructureRepository
         {
             try
             {
-                await contextDb.GetCollection<T>().InsertOneAsync(objeto);
-                return objeto;
+                if (objeto != null)
+                {
+                    await contextDb.GetCollection<T>().InsertOneAsync(objeto);
+                    return objeto;
+                }
+                else
+                {
+                    throw new ArgumentNullException(typeof(T).Name + " objeto es nulo");
+                }
             }
             catch (Exception ex)
             {
@@ -46,7 +53,6 @@ namespace Andina.Infrastructure.InfrastructureRepository
 
                 //obtenemos el objeto
                 return await contextDb.GetCollection<T>().FindAsync<T>(filter).Result.FirstOrDefaultAsync();
-
             }
             catch (Exception ex)
             {
