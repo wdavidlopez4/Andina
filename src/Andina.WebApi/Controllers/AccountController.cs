@@ -67,7 +67,7 @@ namespace Andina.WebApi.Controllers
                 }
                 else
                 {
-                    return BadRequest("no pudimos recupear el usuario con el correo dado, intente de nuevo. ");
+                    return BadRequest(new { message = "no pudimos recupear el usuario con el correo dado, intente de nuevo. " });
                 }
             }
             else

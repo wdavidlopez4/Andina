@@ -30,6 +30,9 @@ namespace Andina.WebApi
 
             //inyectar dependencias
             RegistrarInyecciones(services, Configuration);
+
+            services.AddCors();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +46,8 @@ namespace Andina.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed((host) => true).AllowCredentials());
 
             app.UseAuthorization();
 

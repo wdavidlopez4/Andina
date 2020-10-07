@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
-import {LoginService} from "../../Service/login/login-service";
-import {Router} from "@angular/router";
-import {error} from "util";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
+import { LoginService } from "../../Service/login/login-service";
+import { Router } from "@angular/router";
+import { error } from "util";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import {error} from "util";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  showLoader: boolean = false;
   form: FormGroup;
 
   constructor(
@@ -31,11 +31,17 @@ export class LoginComponent implements OnInit {
   }
 
   Submit() {
+    this.showLoader = true;
     this.loginService.Login(this.form.value).subscribe((data) => {
+      debugger;
       localStorage.setItem("token", data.token);
+      this.showLoader = false;
       this.router.navigateByUrl('/home');
     }, error => {
       (error.status == 400) ? alert("Datos incorrectos") : console.log(error);
+      //Bad request del api no devuelve el mensaje en HttpErrorResponse
+      console.log(error);
+      this.showLoader = false;
     });
   }
 
