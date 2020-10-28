@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Andina.Application.UsuarioServices.Interfaces;
 using Andina.Domain.Dtos;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -112,6 +114,7 @@ namespace Andina.WebApi.Controllers
 
         [Route("ActualizarUsuario")]
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> ActualizarUsuario([FromBody] UsuarioDto usuario)
         {
             if (ModelState.IsValid)
