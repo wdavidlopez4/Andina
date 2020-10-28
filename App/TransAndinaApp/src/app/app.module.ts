@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import {LoginService} from "./Service/login/login-service";
 import { HomeComponent } from './home/home.component';
+import { VehiclesComponent } from './vehicles/vehicles.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
@@ -16,7 +17,8 @@ import { SharedModule } from './shared/shared.module';
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    VehiclesComponent
   ],
   imports: [
     BrowserModule,
