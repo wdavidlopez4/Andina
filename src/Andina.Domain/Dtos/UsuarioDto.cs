@@ -7,6 +7,8 @@ namespace Andina.Domain.Dtos
 {
     public class UsuarioDto
     {
+        public Guid Id { get; set; }
+
         public string Nombres { get; set; }
 
         public string Apellidos { get; set; }

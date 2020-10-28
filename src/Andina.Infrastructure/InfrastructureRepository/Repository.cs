@@ -71,5 +71,34 @@ namespace Andina.Infrastructure.InfrastructureRepository
                 throw ex;
             }
         }
+
+
+        public async Task<T> Modificar<T>(Expression<Func<T, bool>> expression, T obj) where T : class
+        {
+            try
+            {
+                await contextDb.GetCollection<T>().ReplaceOneAsync(expression, obj);
+                return obj;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<bool> Existe<T>(Expression<Func<T, bool>> expression) where T : class
+        {
+            try
+            {
+                return await contextDb.GetCollection<T>().AsQueryable().AnyAsync(expression);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }
