@@ -14,5 +14,9 @@ namespace Andina.Application.UsuarioServices.Interfaces
         public Task<bool> GuardarUsuario(UsuarioDto usuarioDto);
 
         public Task<UsuarioDto> ObtenerUsuario(string email, string contraseña);
+
+        public Task<bool> ExisteUsuario(Guid Id);
+
+        public Task<UsuarioDto> ModificarUsuario(UsuarioDto usuarioDto);
     }
 }

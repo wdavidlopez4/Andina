@@ -13,5 +13,9 @@ namespace Andina.Domain.Models.Interfaces
         public Task<T> Obtener<T>(Guid id) where T : class;
 
         public Task<T> Obtener<T>(Expression<Func<T, bool>> expression) where T : class;
+
+        public Task<T> Modificar<T>(Expression<Func<T, bool>> expression, T obj) where T : class;
+
+        public Task<bool> Existe<T>(Expression<Func<T, bool>> expression) where T : class;
     }
 }
