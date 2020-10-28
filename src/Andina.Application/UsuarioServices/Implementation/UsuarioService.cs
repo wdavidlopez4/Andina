@@ -121,5 +121,48 @@ namespace Andina.Application.UsuarioServices.Implementation
             }
             
         }
+
+        public async Task<bool> ExisteUsuario(Guid id)
+        {
+            if (id != null)
+            {
+                return await this.repository.Existe<Usuario>(x => x.Id == id);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<UsuarioDto> ModificarUsuario(UsuarioDto usuarioDto)
+        {
+            if (usuarioDto != null)
+            {
+                //creamos
+                var usuario = new Usuario
+                {
+                    Id = usuarioDto.Id,
+                    Apellidos = usuarioDto.Apellidos,
+                    Contraseña = usuarioDto.Contraseña,
+                    Email = usuarioDto.Email,
+                    FechaDeNacimineto = usuarioDto.FechaDeNacimineto,
+                    FechaExpedicionIdentidad = usuarioDto.FechaExpedicionIdentidad,
+                    Nombres = usuarioDto.Nombres,
+                    NumeroIdentidad = usuarioDto.NumeroIdentidad,
+                    Rol = usuarioDto.Rol,
+                    TipoIdentidad = usuarioDto.TipoIdentidad
+                };
+
+                //modificamos
+                var result = await this.repository.Modificar<Usuario>(x => x.Id == usuario.Id, usuario);
+
+                //retornamos
+                return result != null ? usuarioDto : null;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

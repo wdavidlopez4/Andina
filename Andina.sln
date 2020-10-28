@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Andina.Domain", "src\Andina.Domain\Andina.Domain.csproj", "{3FC43AB4-C267-413F-92AE-0D1C701FF5C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Andina.Domain", "src\Andina.Domain\Andina.Domain.csproj", "{3FC43AB4-C267-413F-92AE-0D1C701FF5C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Andina.Application", "src\Andina.Application\Andina.Application.csproj", "{F66A3C91-F6F4-4D0E-BAB5-D98F2462AD0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Andina.Application", "src\Andina.Application\Andina.Application.csproj", "{F66A3C91-F6F4-4D0E-BAB5-D98F2462AD0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Andina.Infrastructure", "src\Andina.Infrastructure\Andina.Infrastructure.csproj", "{702A6C77-C8A5-4076-8AF9-BD5D36022946}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Andina.Infrastructure", "src\Andina.Infrastructure\Andina.Infrastructure.csproj", "{702A6C77-C8A5-4076-8AF9-BD5D36022946}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Andina.WebApi", "src\Andina.WebApi\Andina.WebApi.csproj", "{22834931-017E-480B-A058-7DE99BD9B640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Andina.WebApi", "src\Andina.WebApi\Andina.WebApi.csproj", "{22834931-017E-480B-A058-7DE99BD9B640}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

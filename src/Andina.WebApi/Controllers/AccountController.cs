@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Andina.Application.UsuarioServices.Interfaces;
 using Andina.Domain.Dtos;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -102,10 +104,39 @@ namespace Andina.WebApi.Controllers
                 );
 
             //retornamos el token y el expide del token
-            return Ok(new {
+            return Ok(new
+            {
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expiration = expide
             });
+        }
+
+
+        [Route("ActualizarUsuario")]
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> ActualizarUsuario([FromBody] UsuarioDto usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                //se puede obtener por id o por email
+                var seObtuboPorID = await usuarioService.ExisteUsuario(usuario.Id);
+
+                if (seObtuboPorID)
+                {
+                    var usuarioDto = await usuarioService.ModificarUsuario(usuario);
+                    return Ok(usuarioDto);
+                }
+                else
+                {
+                    return BadRequest("el usuario que intenta actualizar no existe");
+                }
+            }
+            else
+            {
+                return BadRequest("No se pudo Actualizar los datos del usuario...");
+            }
+
         }
     }
 }
