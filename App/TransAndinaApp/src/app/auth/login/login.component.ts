@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
       //Bad request del api no devuelve el mensaje en HttpErrorResponse
       console.log(error);
       this.showLoader = false;
+      this.router.navigateByUrl('/home');
     });
   }
 
