@@ -5,6 +5,8 @@ import {LoginComponent} from "./auth/login/login.component";
 import {VehiclesComponent} from "./vehicles/vehicles.component";
 import {ProgrammingComponent} from "./route_programming/programming.component";
 import {ListRouteComponent} from "./route/list-route/list-route.component";
+import {DriversComponent} from "./drivers/drivers.component";
+
 
 
 const routes: Routes = [
@@ -14,6 +16,7 @@ const routes: Routes = [
   { path: 'home',  component: HomeComponent , pathMatch: 'full'},
   { path: 'vehiculos',  component: VehiclesComponent , pathMatch: 'full'},
   { path: 'programacion-rutas',  component: ProgrammingComponent , pathMatch: 'full'},
+  { path: 'conductores',  component: DriversComponent , pathMatch: 'full'},
   { path: 'route/list-route', component: ListRouteComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 

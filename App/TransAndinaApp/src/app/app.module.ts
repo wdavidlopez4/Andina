@@ -8,6 +8,7 @@ import {LoginService} from "./Service/login/login-service";
 import { HomeComponent } from './home/home.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { ProgrammingComponent } from './route_programming/programming.component';
+import { DriversComponent } from './drivers/drivers.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
@@ -27,6 +28,7 @@ import { EditStopDialogComponent } from './route/edit-stop-dialog/edit-stop-dial
     HomeComponent,
     VehiclesComponent,
     ProgrammingComponent,
+    DriversComponent,
     HomeComponent,
     ListRouteComponent,
     CreateRouteDialogComponent,
