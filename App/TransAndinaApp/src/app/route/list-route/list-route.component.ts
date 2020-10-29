@@ -34,14 +34,12 @@ export class ListRouteComponent implements OnInit {
 
   constructor(
     private routeService: RouteService,
-    private fb: FormBuilder
   ) {
   }
 
-
   routes = [
     {
-      id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 1,
+      id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 1, estado: 1,
       paradas: [
         {id: 1, nombre: 'La Vega'},
         {id: 2, nombre: 'Honda'},
@@ -53,39 +51,30 @@ export class ListRouteComponent implements OnInit {
       ]
     },
     {
-      id: 2, nombre: 'Medellin - Salento', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 2,
+      id: 2, nombre: 'Medellin - Salento', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 2, estado: 0,
       paradas: [
-        {id: 1, nombre: 'μg/5245'},
-        {id: 1, nombre: 'μg/5245'},
-        {id: 1, nombre: 'μg/5245'},
+        {id: 1, nombre: 'Terminal'},
       ]
     },
     {
-      id: 3, nombre: 'Neiva - Bogotá', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 3,
+      id: 3, nombre: 'Neiva - Bogotá', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 3, estado: 1,
       paradas: [
-        {id: 1, nombre: 'μg/5245'},
-        {id: 1, nombre: 'μg/5245'},
+        {id: 1, nombre: 'Terminal'},
       ]
     },
-    {id: 4, nombre: 'La mesa - Girardot', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 4},
-    {
-      id: 5, nombre: 'Cartagena - Santamarta', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 5,
+    {id: 4, nombre: 'La mesa - Girardot', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 4, estado: 1,
       paradas: [
-        {id: 1, nombre: 'μg/5245'},
-        {id: 1, nombre: 'μg/5245'},
-        {id: 1, nombre: 'μg/5245'},
-        {id: 1, nombre: 'μg/5245'},
+        {id: 1, nombre: 'Terminal'},
+      ]
+    },
+    {
+      id: 5, nombre: 'Cartagena - Santamarta', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 5, estado: 1,
+      paradas: [
+        {id: 1, nombre: 'Terminal'},
       ]
     },
   ];
 
-  paradas = [
-    {id: 1, nombre: 'μg/5245', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 1},
-    {id: 2, nombre: 'μg/245', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 2},
-    {id: 3, nombre: 'μg/.', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 3},
-    {id: 4, nombre: 'μg/31..', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 4},
-    {id: 5, nombre: 'μg/Tableta', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 5},
-  ];
 
   ngOnInit() {
     this.routeService.getRoutes()
@@ -117,6 +106,7 @@ export class ListRouteComponent implements OnInit {
       console.log(error);
       this.showLoader = false;
       this.addRuta();
+      this.createRouteDialog.form.reset();
     });
   }
 
@@ -142,6 +132,17 @@ export class ListRouteComponent implements OnInit {
     });
   }
 
+  onActivateRoute(roueId: number) {
+    console.log(roueId);
+    this.showLoader = true;
+    this.routeService.activateRoute(roueId).subscribe((data) => {
+      this.showLoader = false;
+    }, error => {
+      console.log(error);
+      this.showLoader = false;
+    });
+  }
+
   onCreateStop(e, routeId) {
     console.log(e);
     e.ruta_id = routeId.id;
@@ -152,6 +153,7 @@ export class ListRouteComponent implements OnInit {
       console.log(error);
       this.showLoader = false;
       this.addStop(e);
+      this.createStopDialog.form.reset();
     });
   }
 
@@ -180,16 +182,13 @@ export class ListRouteComponent implements OnInit {
   addRuta() {
     const aux = this.createRouteDialog.form.getRawValue();
     this.routes.push({
-      id: 1, nombre: aux.nombre, fecha: aux.fecha, hora: aux.hora, precio: aux.precio, value: 1,
+      id: 1, nombre: aux.nombre, fecha: aux.fecha, hora: aux.hora, precio: aux.precio, value: 1, estado: 1,
       paradas: []
     });
   }
 
   addStop(data: any) {
-    console.log(data, 'entra')
     const aux = this.createStopDialog.form.getRawValue();
-    console.log(aux, 'form')
-    console.log(this.routes[this.routeSelectedId.id - 1], 'rutas')
      this.routes[this.routeSelectedId.id - 1].
       paradas.push({
       id: 1, nombre: aux.nombre

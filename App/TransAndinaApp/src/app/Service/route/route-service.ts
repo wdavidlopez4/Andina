@@ -42,6 +42,12 @@ export class RouteService {
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 
+  activateRoute(routeId: number): Observable<Route> {
+    return this.http
+      .delete<Route>(`${this.url}/route/activate-route/${routeId}`)
+      .pipe(catchError(error => observableThrowError(error.error)));
+  }
+
   createStop(data: Paradas): Observable<Paradas> {
     return this.http
       .post<Paradas>(`${this.url}/route/edit-stop`, data)

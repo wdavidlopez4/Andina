@@ -1,7 +1,7 @@
 <div class="container-fluid" style="margin-top: 50px">
   <div class="col-12">
     <div class="col-md-12 ">
-      <h1 class="text-reset">Gestion de rutas</h1>
+      <h1 class="text-reset">Administración de rutas</h1>
     </div>
   </div>
 </div>
@@ -9,7 +9,8 @@
   <div class="row vh-100 col-12">
     <div class="col-md-6 ">
       <div class="list-group">
-        <button type="button" class="btn btn-success" title="Agregar ruta" data-toggle="modal" data-target="#createRoute">
+        <button type="button" class="btn btn-success" title="Agregar ruta" data-toggle="modal"
+                data-target="#createRoute">
           Agregar ruta
         </button>
         <br>
@@ -18,6 +19,7 @@
           <tr>
             <th scope="col">Nombre</th>
             <th scope="col">Fecha/Hora</th>
+            <th scope="col">Estado</th>
             <th scope="col">Precio</th>
             <th scope="col"></th>
           </tr>
@@ -26,13 +28,23 @@
           <tr *ngFor="let item of routes;  let i = index" (click)="routeSelected(item)">
             <td>{{item?.nombre}}</td>
             <td>{{item?.fecha}} / {{item.hora}}</td>
+            <ng-container *ngIf="item.estado == 1">
+              <td>Activo</td>
+            </ng-container>
+            <ng-container *ngIf="item.estado == 0">
+              <td>Inactivo</td>
+            </ng-container>
             <td>{{item?.precio}}</td>
             <td>
-              <button type="button" class="btn btn-primary" (click)="onShowEditRoute(item)" data-toggle="modal"
+              <button *ngIf="item.estado == 1" type="button" class="btn btn-primary" (click)="onShowEditRoute(item)"
+                      data-toggle="modal"
                       data-target="#editRoute" title="Editar ruta">
                 <i class="fas fa-edit"></i>
               </button>
-              <button type="button" style="margin-left: 10px" class="btn btn-danger" (click)="onDeleteRoute(i)"  title="Borrar"> <i class="fas fa-trash" ></i></button>
+              <button *ngIf="item.estado == 1" type="button" style="margin-left: 10px" class="btn btn-danger"
+                      (click)="onDeleteRoute(i)" title="Borrar"><i class="fas fa-trash"></i></button>
+              <button *ngIf="item.estado == 0" type="button" class="btn btn-outline-success"
+                      (click)="onActivateRoute(i)" title="Desactivar ruta"><i class="fas fa-arrow-up"></i></button>
 
             </td>
           </tr>
@@ -41,8 +53,9 @@
       </div>
     </div>
     <div class="col-md-6" style="text-align: center">
-      <div class="list-group" *ngIf="routeSelectedId">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createStop" title="Agregar parada">
+      <div class="list-group" *ngIf="routeSelectedId && routeSelectedId.estado == 1">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createStop"
+                title="Agregar parada">
           Agregar parada
         </button>
         <table class="table">
@@ -61,16 +74,18 @@
             <th>{{ i + 1}}</th>
             <td>{{item?.nombre}}</td>
             <td>
-              <button type="button" class="btn btn-primary" (click)="onShowEditStop(item)" data-toggle="modal" title="Editar"
+              <button type="button" class="btn btn-primary" (click)="onShowEditStop(item)" data-toggle="modal"
+                      title="Editar"
                       data-target="#editStop"><i class="fas fa-edit"></i>
               </button>
-<!--              <button type="button" style="margin-left: 10px" class="btn btn-secondary bi bi-arrow-up-short" title="Subir puesto"-->
-<!--                      *ngIf="i !== 0"><i class="fas fa-arrow-up"></i>-->
-<!--              </button>-->
-<!--              <button type="button" style="margin-left: 10px" class="btn btn-success" *ngIf="i !== (paradas.length -1)"  title="Bajar puesto">-->
-<!--                <i class="fas fa-arrow-down"></i>-->
-<!--              </button>-->
-              <button type="button" style="margin-left: 10px" class="btn btn-danger" (click)="onDeleteStop(item.id)" title="Borrar"> <i class="fas fa-trash" ></i></button>
+              <!--              <button type="button" style="margin-left: 10px" class="btn btn-secondary bi bi-arrow-up-short" title="Subir puesto"-->
+              <!--                      *ngIf="i !== 0"><i class="fas fa-arrow-up"></i>-->
+              <!--              </button>-->
+              <!--              <button type="button" style="margin-left: 10px" class="btn btn-success" *ngIf="i !== (paradas.length -1)"  title="Bajar puesto">-->
+              <!--                <i class="fas fa-arrow-down"></i>-->
+              <!--              </button>-->
+              <button type="button" style="margin-left: 10px" class="btn btn-danger" (click)="onDeleteStop(item.id)"
+                      title="Borrar"><i class="fas fa-trash"></i></button>
             </td>
           </tr>
           </tbody>
@@ -79,7 +94,7 @@
     </div>
   </div>
 </div>
-<pre>{{routes | json}}</pre>
+<!--<pre>{{routes | json}}</pre>-->
 <app-spinner [show]=showLoader></app-spinner>
 <app-create-route-dialog #createRouteDialog
                          (createRoute)="onCreateRoute($event)">
