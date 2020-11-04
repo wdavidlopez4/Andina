@@ -15,11 +15,15 @@ import {CommonModule} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { SharedModule } from './shared/shared.module';
 import { ListRouteComponent } from './route/list-route/list-route.component';
-import {RouteService} from "./Service/route/route-service";
 import { CreateRouteDialogComponent } from './route/create-route-dialog/create-route-dialog.component';
 import { EditRouteDialogComponent } from './route/edit-route-dialog/edit-route-dialog.component';
 import { CreateStopDialogComponent } from './route/create-stop-dialog/create-stop-dialog.component';
 import { EditStopDialogComponent } from './route/edit-stop-dialog/edit-stop-dialog.component';
+import { ListVehicleComponent } from './vehicle/list-vehicle/list-vehicle.component';
+import { CreateVehicleDialogComponent } from './vehicle/create-vehicle-dialog/create-vehicle-dialog.component';
+import { EditVehicleDialogComponent } from './vehicle/edit-vehicle-dialog/edit-vehicle-dialog.component';
+import {RouteService} from "./Service/route/route-service";
+import {VehicleService} from "./Service/vehicle/vehicle-service";
 
 @NgModule({
   declarations: [
@@ -35,6 +39,9 @@ import { EditStopDialogComponent } from './route/edit-stop-dialog/edit-stop-dial
     EditRouteDialogComponent,
     CreateStopDialogComponent,
     EditStopDialogComponent,
+    ListVehicleComponent,
+    CreateVehicleDialogComponent,
+    EditVehicleDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +52,7 @@ import { EditStopDialogComponent } from './route/edit-stop-dialog/edit-stop-dial
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [LoginService, RouteService],
+  providers: [LoginService, RouteService,VehicleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,6 +7,7 @@ import {ProgrammingComponent} from "./route_programming/programming.component";
 import {ListRouteComponent} from "./route/list-route/list-route.component";
 import {DriversComponent} from "./drivers/drivers.component";
 
+import {ListVehicleComponent} from "./vehicle/list-vehicle/list-vehicle.component";
 
 
 const routes: Routes = [
@@ -18,6 +19,8 @@ const routes: Routes = [
   { path: 'programacion-rutas',  component: ProgrammingComponent , pathMatch: 'full'},
   { path: 'conductores',  component: DriversComponent , pathMatch: 'full'},
   { path: 'route/list-route', component: ListRouteComponent },
+  { path: 'vehicle/list-vehicle', component: ListVehicleComponent },
+
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 
 ];

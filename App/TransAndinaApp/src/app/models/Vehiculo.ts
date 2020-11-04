@@ -4,5 +4,7 @@ export class Vehiculo {
     marca: string;
     modelo: string;
     placa: string;
+    capacidad: string;
+    estado: string;
   }
   

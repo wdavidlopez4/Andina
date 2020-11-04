@@ -1,0 +1,101 @@
+<nav class="navbar navbar-light bg-dark">
+  <a class="navbar-brand" href="/home">TransAndina</a>
+</nav>
+<div class="container" id="containerRoutes">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-12" id="titleForm">
+      <h1 class="text-reset">Vehiculos</h1>
+      <p>Diligencia el formulario para agregar un nuevo vehiculo.</p>
+    </div>
+  </div>
+  <div class="col col-lg-12">
+    <div class="list-group">
+      <button
+        type="button"
+        class="btn btn-info"
+        title="Agregar ruta"
+        data-toggle="modal"
+        data-target="#createVehicle"
+      >
+        Agregar vehiculo
+      </button>
+      <br />
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Tipo</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Placa</th>
+            <th scope="col">Capacidad</th>
+            <th scope="col">Estado</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let item of vehicles; let i = index"
+            (click)="vehicleSelected(item)"
+          >
+            <td>{{ item?.tipo }}</td>
+            <td>{{ item?.marca }}</td>
+            <td>{{ item?.modelo }}</td>
+            <td>{{ item?.placa }}</td>
+            <td>{{ item?.capacidad }}</td>
+            <ng-container *ngIf="item.estado == 1">
+              <td>Activo</td>
+            </ng-container>
+            <ng-container *ngIf="item.estado == 0">
+              <td>Inactivo</td>
+            </ng-container>
+            <td>
+              <button
+                *ngIf="item.estado == 1"
+                type="button"
+                class="btn btn-primary"
+                (click)="onShowEditVehicle(item)"
+                data-toggle="modal"
+                data-target="#editVehicle"
+                title="Editar vehículo"
+              >
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                *ngIf="item.estado == 1"
+                type="button"
+                style="margin-left: 10px"
+                class="btn btn-danger"
+                (click)="onDeleteVehicle(i)"
+                title="Borrar"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+              <button
+                *ngIf="item.estado == 0"
+                type="button"
+                class="btn btn-outline-success"
+                (click)="onActivateVehicle(i)"
+                title="Desactivar vehículo"
+              >
+                <i class="fas fa-arrow-up"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!--<pre>{{routes | json}}</pre>-->
+  <app-spinner [show]="showLoader"></app-spinner>
+  <app-create-vehicle-dialog
+    #createVehicleDialog
+    (createVehicle)="onCreateVehicle($event)"
+  >
+  </app-create-vehicle-dialog>
+  <app-edit-vehicle-dialog
+    #editVehicleDialog
+    (editeVehicle)="onEditVehicle($event)"
+  >
+  </app-edit-vehicle-dialog>
+</div>
