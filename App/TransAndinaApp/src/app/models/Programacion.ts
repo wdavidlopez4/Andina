@@ -1,10 +1,15 @@
+import {Ruta} from "./Ruta";
+import {Conductor} from "./Conductor";
+import {Vehiculo} from "./Vehiculo";
+
 export class Programacion {
     id?: number;
-    fecha: string;
-    id_municipio_origen: number;
-    id_municipio_destino: number;
-    valor_viaje: string;
-    id_conductor_vehiculo: number;
+    fecha: Date;
+    hora_salida: string;
+    hora_llegada: string;
+    id_ruta?: Ruta;
+    id_conductor?: Conductor;
+    id_vehiculo?: Vehiculo;
     estado: boolean;
   }
   
