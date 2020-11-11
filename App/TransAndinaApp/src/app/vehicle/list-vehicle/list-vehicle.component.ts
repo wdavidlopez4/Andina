@@ -9,7 +9,8 @@ import {Vehiculo} from "../../models/Vehiculo";
 @Component({
   selector: 'app-list-vehicle',
   templateUrl: './list-vehicle.component.html',
-  styleUrls: ['./list-vehicle.component.css']
+  styleUrls: ['../.././home/home.component.css','./list-vehicle.component.css'
+  ]
 })
 export class ListVehicleComponent implements OnInit {
 

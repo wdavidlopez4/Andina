@@ -22,10 +22,9 @@ import { CreateVehicleDialogComponent } from './vehicle/create-vehicle-dialog/cr
 import { EditVehicleDialogComponent } from './vehicle/edit-vehicle-dialog/edit-vehicle-dialog.component';
 import { RouteService} from "./Service/route/route-service";
 import { VehicleService} from "./Service/vehicle/vehicle-service";
-
+import { AddProgrammingDialogComponent } from './route/add-programming-dialog/add-programming-dialog.component';
 import { ProgrammingService} from "./Service/programming/programming-service";
 import { ListProgrammingComponent } from './route_programming/list-programming/list-programming.component';
-import { CreateProgrammingDialogComponent } from './route_programming/create-programming-dialog/create-programming-dialog.component';
 import { EditProgrammingDialogComponent } from './route_programming/edit-programming-dialog/edit-programming-dialog.component';
 
 @NgModule({
@@ -44,7 +43,7 @@ import { EditProgrammingDialogComponent } from './route_programming/edit-program
     CreateVehicleDialogComponent,
     EditVehicleDialogComponent,
     ListProgrammingComponent,
-    CreateProgrammingDialogComponent,
+    AddProgrammingDialogComponent,
     EditProgrammingDialogComponent
   ],
   imports: [

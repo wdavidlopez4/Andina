@@ -3,6 +3,7 @@ import {RouteService} from "../../Service/route/route-service";
 import {CreateRouteDialogComponent} from "../create-route-dialog/create-route-dialog.component";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EditRouteDialogComponent} from "../edit-route-dialog/edit-route-dialog.component";
+import {AddProgrammingDialogComponent} from "../add-programming-dialog/add-programming-dialog.component";
 import {CreateStopDialogComponent} from "../create-stop-dialog/create-stop-dialog.component";
 import {EditStopDialogComponent} from "../edit-stop-dialog/edit-stop-dialog.component";
 import {Route} from "@angular/router";
@@ -11,7 +12,7 @@ import {Ruta} from "../../models/Ruta";
 @Component({
   selector: 'app-list-route',
   templateUrl: './list-route.component.html',
-  styleUrls: ['./list-route.component.css']
+  styleUrls: ['../.././home/home.component.css','./list-route.component.css']
 })
 export class ListRouteComponent implements OnInit {
 
@@ -26,9 +27,12 @@ export class ListRouteComponent implements OnInit {
   @ViewChild('editRouteDialog', {static: true})
   editRouteDialog: EditRouteDialogComponent;
 
+  @ViewChild('addProgrammingDialog', {static: true})
+  addProgrammingDialog: AddProgrammingDialogComponent;
+
   @ViewChild('createStopDialog', {static: true})
   createStopDialog: CreateStopDialogComponent;
-
+  
   @ViewChild('editStopDialog', {static: true})
   editStopDialog: EditStopDialogComponent;
 
@@ -66,13 +70,7 @@ export class ListRouteComponent implements OnInit {
       paradas: [
         {id: 1, nombre: 'Terminal'},
       ]
-    },
-    {
-      id: 5, nombre: 'Cartagena - Santamarta', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 5, estado: 1,
-      paradas: [
-        {id: 1, nombre: 'Terminal'},
-      ]
-    },
+    }
   ];
 
 
@@ -92,6 +90,10 @@ export class ListRouteComponent implements OnInit {
     this.editRouteDialog.loadFormRoute(route);
   }
 
+  onShowAddProgramming(route) {
+    this.addProgrammingDialog.loadFormRoute(route);
+  }
+  
   onShowEditStop(route) {
     this.editStopDialog.rutaId = this.routeSelectedId;
     this.editStopDialog.loadFormStop(route);
@@ -121,6 +123,14 @@ export class ListRouteComponent implements OnInit {
     });
   }
 
+  onAddProgramming(e) {
+    this.showLoader = true;
+    this.routeService.addProgramming(e).subscribe((data) => {
+      this.showLoader = false;
+    }, error => {
+      this.showLoader = false;
+    });
+  }
   onDeleteRoute(roueId: number) {
     console.log(roueId);
     this.showLoader = true;

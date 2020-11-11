@@ -51,8 +51,8 @@ export class EditVehicleDialogComponent implements OnInit {
     });
   }
 
-  onEditRoute() {
-    const ruta = this.form.getRawValue();
-    this.editeRoute.emit(ruta);
+  onEditVehicle() {
+    const vehicle = this.form.getRawValue();
+    this.editeRoute.emit(vehicle);
   }
 }

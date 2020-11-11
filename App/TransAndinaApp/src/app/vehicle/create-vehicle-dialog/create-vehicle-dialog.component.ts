@@ -22,7 +22,7 @@ export class CreateVehicleDialogComponent implements OnInit {
   ]
 
   @Output()
-  createRoute = new EventEmitter<Vehiculo>();
+  createVehicle = new EventEmitter<Vehiculo>();
 
   constructor(
     private vehicleService: VehicleService,
@@ -45,9 +45,9 @@ export class CreateVehicleDialogComponent implements OnInit {
     });
   }
 
-  onCreateRoute(){
-    const ruta = this.form.getRawValue();
-    this.createRoute.emit(ruta);
+  onCreateVehicle(){
+    const vehicle = this.form.getRawValue();
+    this.createVehicle.emit(vehicle);
   }
 
 }

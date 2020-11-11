@@ -43,7 +43,7 @@ export class EditProgrammingDialogComponent implements OnInit {
     });
   }
 
-  onEditRoute() {
+  onAddProgramming() {
     const ruta = this.form.getRawValue();
     this.editeRoute.emit(ruta);
   }

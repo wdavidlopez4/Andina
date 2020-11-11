@@ -35,7 +35,13 @@ export class RouteService {
       .post<Ruta>(`${this.url}/route/edit-route`, data)
       .pipe(catchError(error => observableThrowError(error.error)));
   }
-
+  
+  addProgramming(data: Ruta): Observable<Ruta> {
+    return this.http
+      .post<Ruta>(`${this.url}/route/edit-route`, data)
+      .pipe(catchError(error => observableThrowError(error.error)));
+  }
+  
   deleteRoute(routeId: number): Observable<Route> {
     return this.http
       .delete<Route>(`${this.url}/route/delete-route/${routeId}`)
