@@ -16,7 +16,10 @@ namespace Andina.Domain.Dtos
 
         public int Capacidad { get; set; }
 
-        public Guid IdMarca { get; set; }
-        public Guid IdTipo { get; set; }
+        public Guid IdMarcaVehiculo { get; set; }
+        public MarcaVehiculoDto MarcaVehiculo { get; set; }
+
+        public Guid IdTipoVehiculo { get; set; }
+        public TipoVehiculoDto TipoVehiculo { get; set; }
     }
 }

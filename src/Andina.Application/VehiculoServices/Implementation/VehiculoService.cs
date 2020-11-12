@@ -4,6 +4,7 @@ using Andina.Domain.Models.Interfaces;
 using Andina.Domain.Models.Vehiculo;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,17 +23,24 @@ namespace Andina.Application.VehiculoServices.Implementation
         {
             if (veiculoDto != null)
             {
+                var marca = await this.repository.Obtener<MarcaVehiculo>(x => x.Id == veiculoDto.IdMarcaVehiculo);
+
+                if (marca == null)
+                {
+                    return false;
+                }
+
+                var tipo = await this.repository.Obtener<TipoVehiculo>(x => x.Id == veiculoDto.IdTipoVehiculo);
+                if (tipo == null)
+                {
+                    return false;
+                }
+
                 //creamos modelo
                 var vehiculo = new Vehiculo
                 {
-                    TipoVehiculo = new TipoVehiculo()
-                    {
-                        Id = veiculoDto.IdTipo
-                    },
-                    MarcaVehiculo = new MarcaVehiculo()
-                    {
-                        Id = veiculoDto.IdMarca
-                    },
+                    TipoVehiculo = tipo,
+                    MarcaVehiculo = marca,
                     Placa = veiculoDto.Placa,
                     Estado = veiculoDto.Estado,
                     Capacidad = veiculoDto.Capacidad
@@ -65,7 +73,6 @@ namespace Andina.Application.VehiculoServices.Implementation
         public async Task<List<VehiculoDto>> ObtenerVehiculos()
         {
             List<VehiculoDto> result = new List<VehiculoDto>();
-
             List<Vehiculo> listVehiculo = await this.repository.ObtenerLista<Vehiculo>();
             foreach (var item in listVehiculo)
             {
@@ -73,11 +80,12 @@ namespace Andina.Application.VehiculoServices.Implementation
                 {
                     Capacidad = item.Capacidad,
                     Estado = item.Estado,
-                    IdMarca = item.MarcaVehiculo != null ? item.MarcaVehiculo.Id : Guid.Empty,
-                    IdTipo = item.TipoVehiculo != null ? item.TipoVehiculo.Id : Guid.Empty,
+                    IdMarcaVehiculo = item.MarcaVehiculo != null ? item.MarcaVehiculo.Id : Guid.Empty,
+                    MarcaVehiculo = new MarcaVehiculoDto() { Id = item.MarcaVehiculo.Id, Nombre = item.MarcaVehiculo.Nombre },
+                    IdTipoVehiculo = item.TipoVehiculo != null ? item.TipoVehiculo.Id : Guid.Empty,
+                    TipoVehiculo = new TipoVehiculoDto() { Id = item.TipoVehiculo.Id, Nombre = item.TipoVehiculo.Nombre },
                     Placa = item.Placa,
                 });
-
             }
 
             return result;
