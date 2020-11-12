@@ -1,8 +1,10 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Ruta} from "../../models/Ruta";
 import {RouteService} from "../../Service/route/route-service";
 import {RouterModule} from "@angular/router";
+import {Conductor} from "../../models/Conductor";
+import {Vehiculo} from "../../models/Vehiculo";
 
 @Component({
   selector: 'app-add-programming-dialog',
@@ -11,12 +13,23 @@ import {RouterModule} from "@angular/router";
 })
 export class AddProgrammingDialogComponent implements OnInit {
 
-  display: string;
   form: FormGroup;
   showLoader: boolean = false;
 
   @Output()
-  editeRoute = new EventEmitter<Ruta>();
+  createPogramingRoute = new EventEmitter<any>();
+
+  @Input()
+  conductores: Conductor;
+
+  @Input()
+  vehiculos: Vehiculo;
+
+  @Input()
+  drivers: Conductor;
+
+  @Input()
+  vehicles: Vehiculo;
 
   constructor(
     private routeService: RouteService,
@@ -30,20 +43,20 @@ export class AddProgrammingDialogComponent implements OnInit {
 
   CreateForm() {
     this.form = this.fb.group({
-      nombre: ['', Validators.required],
-      fecha: ['', Validators.required],
+      id_conductor: ['', Validators.required],
+      id_vehiculo: ['', Validators.required],
     });
   }
 
-  loadFormRoute(route: Ruta) {
+  loadFormRoute(id_conductor, id_vehiculo) {
     this.form = this.fb.group({
-      id_conductor: [route.id, Validators.required],
-      id_vehiculo: [route.nombre, Validators.required]
+      id_conductor: [id_conductor, Validators.required],
+      id_vehiculo: [id_vehiculo, Validators.required]
     });
   }
 
   onAddProgramming() {
     const ruta = this.form.getRawValue();
-    this.editeRoute.emit(ruta);
+    this.createPogramingRoute.emit(ruta);
   }
 }

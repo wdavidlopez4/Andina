@@ -29,8 +29,8 @@
 
           <div style="margin: 0 auto;">
             <div class="column">
-              <div class="gallery">
-                <a target="_blank" href="">
+              <div class="gallery" routerLinkActive="active">
+                <a [routerLink]="['/home']">
                   <img
                     src="assets/imgs/usuario.png"
                     alt="Cinque Terre"
@@ -41,8 +41,8 @@
                 <div class="desc">Usuarios</div>
               </div>
 
-              <div class="gallery">
-                <a target="_blank" href="/vehicle/list-vehicle">
+              <div class="gallery" routerLinkActive="active">
+                <a [routerLink]="['/vehicle/list-vehicle']">
                   <img
                     src="assets/imgs/autobus.png"
                     alt="Forest"
@@ -53,8 +53,8 @@
                 <div class="desc">Vehículos</div>
               </div>
 
-              <div class="gallery">
-                <a target="_blank" href="/conductores">
+              <div class="gallery" routerLinkActive="active">
+                <a [routerLink]="['/conductores']">
                   <img
                     src="assets/imgs/conductor.png"
                     alt="Northern Lights"
@@ -67,10 +67,22 @@
             </div>
 
             <div class="column">
-              <div class="gallery">
-                <a target="_blank" href="route/list-route">
+              <div class="gallery" routerLinkActive="active">
+                <a [routerLink]="['/route/list-route']">
                   <img
                     src="assets/imgs/camino-adelante-perspectiva-recta.png"
+                    alt="Mountains"
+                    width="600"
+                    height="400"
+                  />
+                </a>
+                <div class="desc">Administración de rutas</div>
+              </div>
+
+              <div class="gallery" routerLinkActive="active">
+                <a [routerLink]="['/programming/list-programming']">
+                  <img
+                    src="assets/imgs/calendario.png"
                     alt="Mountains"
                     width="600"
                     height="400"
@@ -79,20 +91,8 @@
                 <div class="desc">Rutas</div>
               </div>
 
-              <div class="gallery">
-                <a target="_blank" href="programming/list-programming">
-                  <img
-                    src="assets/imgs/calendario.png"
-                    alt="Mountains"
-                    width="600"
-                    height="400"
-                  />
-                </a>
-                <div class="desc">Programación de Rutas</div>
-              </div>
-
-              <div class="gallery">
-                <a target="_blank" href="#">
+              <div class="gallery" routerLinkActive="active">
+                <a [routerLink]="['/home']" >
                   <img
                     src="assets/imgs/boleto.png"
                     alt="Mountains"
