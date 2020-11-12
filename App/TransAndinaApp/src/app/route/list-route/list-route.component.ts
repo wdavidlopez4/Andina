@@ -48,8 +48,8 @@ export class ListRouteComponent implements OnInit {
   routestest = [
     {
       id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 1, estado: 1,
-      id_conductor: 1,
-      id_vehiculo: 1,
+      id_conductor: null,
+      id_vehiculo: null,
       paradas: [
         {id: 1, nombre: 'La Vega'},
         {id: 2, nombre: 'Honda'},
@@ -87,10 +87,10 @@ export class ListRouteComponent implements OnInit {
   ];
 
   conductores = [
-    {nombre: 'Carlos', id: 1},
-    {nombre: 'Juan', id: 2},
-    {nombre: 'Mario', id: 3},
-    {nombre: 'Antonio', id: 4},
+    {nombre: 'John Peñuela', id: 1},
+    {nombre: 'Juan Martinez', id: 2},
+    {nombre: 'Mario Mendoza', id: 3},
+    {nombre: 'Antonio Grisales', id: 4},
   ]
 
   vehiculos = [
@@ -173,7 +173,6 @@ export class ListRouteComponent implements OnInit {
   }
 
 
-
   onDeleteRoute(roueId: number) {
     console.log(roueId);
     this.showLoader = true;
@@ -240,6 +239,22 @@ export class ListRouteComponent implements OnInit {
       id_vehiculo: 1,
       paradas: []
     });
+  }
+
+  deleteruta(id) {
+    this.showLoader = true;
+    const aux = this.createRouteDialog.form.getRawValue();
+    const ruta = this.routestest.find(r => r.id === id)
+    ruta.estado = 0;
+    this.showLoader = false;
+  }
+
+  activarRuta(id) {
+    this.showLoader = true;
+    const aux = this.createRouteDialog.form.getRawValue();
+    const ruta = this.routestest.find(r => r.id === id)
+    ruta.estado = 1;
+    this.showLoader = false;
   }
 
   addStop(data: any) {

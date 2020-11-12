@@ -30,7 +30,7 @@ export class ListProgrammingComponent implements OnInit {
     {
       id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12  08:43', id_conductor: 2, id_vehiculo: 1, estado: 'En curso',
       conductor: {
-        nombre: 'Juan'
+        nombre: 'John Peñuela'
       },
       vehiculo: {
         marca: 'Mazda'
@@ -40,7 +40,7 @@ export class ListProgrammingComponent implements OnInit {
     {
       id: 2, nombre: 'Medellin - Salento', fecha: '2020-10-12  08:43', id_conductor: 2, id_vehiculo: 1,  estado: 'Finalizada',
       conductor: {
-        nombre: 'Carlos'
+        nombre: 'Mario Mendoza'
       },
       vehiculo: {
         marca: 'Nissan'
