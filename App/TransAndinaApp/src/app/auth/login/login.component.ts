@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   CreateForm() {
     this.form = this.fb.group({
       Email: ['', Validators.required],
-      Password: ['', Validators.required]
+      Contraseña: ['', Validators.required]
     });
   }
 
@@ -35,10 +35,12 @@ export class LoginComponent implements OnInit {
     this.loginService.Login(this.form.value).subscribe((data) => {
       debugger;
       localStorage.setItem("token", data.token);
+      debugger;
       this.showLoader = false;
       this.router.navigateByUrl('/home');
     }, error => {
-      (error.status == 400) ? alert("Datos incorrectos") : console.log(error);
+      alert("Datos incorrectos") 
+      // (error.status == 400) ? alert("Datos incorrectos") : console.log(error);
       //Bad request del api no devuelve el mensaje en HttpErrorResponse
       console.log(error);
       this.showLoader = false;

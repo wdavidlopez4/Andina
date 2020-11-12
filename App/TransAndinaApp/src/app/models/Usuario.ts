@@ -5,7 +5,7 @@ export class Usuario {
   id_persona: number;
   id_perfil: number;
   login: string;
-  password: string;
+  contraseña: string;
   estado: boolean;
 
   //Relacion

@@ -14,6 +14,7 @@ export class LoginService {
 
   Login(data: Usuario): any {
     console.log(data)
+    debugger;
     return this.http.post(this.url + 'Account/Logear', data);
   }
 
