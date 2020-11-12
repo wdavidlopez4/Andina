@@ -21,7 +21,7 @@ export class ListRouteComponent implements OnInit {
   routeSelectedId: any;
   showLoader: boolean = false;
   form: FormGroup;
-  routesa: Ruta[];
+  routes: Ruta[];
   drivers: Conductor[];
   vehicles: Vehiculo[];
 
@@ -45,7 +45,7 @@ export class ListRouteComponent implements OnInit {
   ) {
   }
 
-  routes = [
+  routestest = [
     {
       id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 1, estado: 1,
       id_conductor: 1,
@@ -104,7 +104,7 @@ export class ListRouteComponent implements OnInit {
   ngOnInit() {
     this.routeService.getRoutes()
       .subscribe(response => {
-        this.routesa = response;
+        this.routes = response;
       });
     this.routeService.getDrivers()
       .subscribe(response => {
@@ -234,7 +234,7 @@ export class ListRouteComponent implements OnInit {
 
   addRuta() {
     const aux = this.createRouteDialog.form.getRawValue();
-    this.routes.push({
+    this.routestest.push({
       id: 1, nombre: aux.nombre, fecha: aux.fecha, hora: aux.hora, precio: aux.precio, value: 1, estado: 1,
       id_conductor: 1,
       id_vehiculo: 1,
@@ -244,7 +244,7 @@ export class ListRouteComponent implements OnInit {
 
   addStop(data: any) {
     const aux = this.createStopDialog.form.getRawValue();
-    this.routes[this.routeSelectedId.id - 1].paradas.push({
+    this.routestest[this.routeSelectedId.id - 1].paradas.push({
       id: 1, nombre: aux.nombre
     });
   }

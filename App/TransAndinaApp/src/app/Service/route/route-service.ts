@@ -22,7 +22,7 @@ export class RouteService {
 
   getRoutes(): Observable<Ruta[]> {
     return this.http
-      .get<Ruta[]>(`${this.url}/route/get-routes`)
+      .get<Ruta[]>(`${this.url}/ObtenerListaRutas`)
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 
@@ -40,7 +40,7 @@ export class RouteService {
 
   createRoute(data: Ruta): Observable<Ruta> {
     return this.http
-      .post<Ruta>(`${this.url}/route/create-route`, data)
+      .post<Ruta>(`${this.url}/CrearRuta`, data)
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 
@@ -53,7 +53,7 @@ export class RouteService {
 
   editRoute(data: Ruta): Observable<Ruta> {
     return this.http
-      .post<Ruta>(`${this.url}/route/edit-route`, data)
+      .post<Ruta>(`${this.url}/ActualizarRuta`, data)
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 

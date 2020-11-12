@@ -11,5 +11,7 @@ export class Programacion {
     id_conductor?: Conductor;
     id_vehiculo?: Vehiculo;
     estado: boolean;
+
+    conductor?: Conductor;
+    vehiculo?: Vehiculo;
   }
-  
