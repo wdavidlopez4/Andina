@@ -27,10 +27,23 @@ export class ListProgrammingComponent implements OnInit {
 
   programmings = [
     {
-      id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12 / 08:43', id_conductor: 2, id_vehiculo: 1
+      id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12  08:43', id_conductor: 2, id_vehiculo: 1, estado: 'En curso',
+      conductor: {
+        nombre: 'Juan'
+      },
+      vehiculo: {
+        marca: 'Mazda'
+      },
+
     },
     {
-      id: 2, nombre: 'Medellin - Salento', fecha: '2020-10-12 / 08:43', id_conductor: 2, id_vehiculo: 1}
+      id: 2, nombre: 'Medellin - Salento', fecha: '2020-10-12  08:43', id_conductor: 2, id_vehiculo: 1,  estado: 'Finalizada',
+      conductor: {
+        nombre: 'Carlos'
+      },
+      vehiculo: {
+        marca: 'Nissan'
+      },}
   ];
 
 

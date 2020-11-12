@@ -44,7 +44,7 @@ import { EditProgrammingDialogComponent } from './route_programming/edit-program
     EditVehicleDialogComponent,
     ListProgrammingComponent,
     AddProgrammingDialogComponent,
-    EditProgrammingDialogComponent
+    EditProgrammingDialogComponent,
   ],
   imports: [
     BrowserModule,
