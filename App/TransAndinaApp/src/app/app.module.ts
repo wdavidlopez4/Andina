@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { LoginService} from "./Service/login/login-service";
 import { HomeComponent } from './home/home.component';
-import { DriversComponent } from './drivers/drivers.component';
 import { ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule} from "@angular/common/http";
 import { CommonModule} from "@angular/common";
@@ -26,13 +25,18 @@ import { AddProgrammingDialogComponent } from './route/add-programming-dialog/ad
 import { ProgrammingService} from "./Service/programming/programming-service";
 import { ListProgrammingComponent } from './route_programming/list-programming/list-programming.component';
 import { EditProgrammingDialogComponent } from './route_programming/edit-programming-dialog/edit-programming-dialog.component';
+import { EditDriverDialogComponent} from './drivers/edit-driver-dialog/edit-driver-dialog.component';
+import { ListDriverComponent} from './drivers/list-driver/list-driver-dialog.component';
+import { DriverService} from './Service/driver/driver-service';
+import { CreateDriverDialogComponent} from "./drivers/create-driver-dialog/create-driver-dialog.component";
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    DriversComponent,
     HomeComponent,
     ListRouteComponent,
     CreateRouteDialogComponent,
@@ -44,7 +48,10 @@ import { EditProgrammingDialogComponent } from './route_programming/edit-program
     EditVehicleDialogComponent,
     ListProgrammingComponent,
     AddProgrammingDialogComponent,
-    EditProgrammingDialogComponent
+    EditProgrammingDialogComponent,
+    CreateDriverDialogComponent,
+    EditDriverDialogComponent,
+    ListDriverComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +62,7 @@ import { EditProgrammingDialogComponent } from './route_programming/edit-program
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [LoginService, RouteService,VehicleService,ProgrammingService],
+  providers: [LoginService, RouteService,VehicleService,ProgrammingService, DriverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

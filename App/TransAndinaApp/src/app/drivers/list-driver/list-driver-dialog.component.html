@@ -1,0 +1,208 @@
+<nav class="navbar navbar-light bg-dark">
+    <a class="navbar-brand" href="/home">TransAndina</a>
+  </nav>
+  
+  <div class="container-fluid">
+    <div class="row vh-100 col-12">
+      <div
+        class="col-md-5 text-center py-5 d-flex flex-column justify-content-center auth-bg-section"
+        style="text-align: center"
+      >
+        <div style="margin: 0 auto">
+          <div class="column">
+            <div class="gallery">
+              <a  href="">
+                <img
+                  src="assets/imgs/usuario.png"
+                  alt="Cinque Terre"
+                  width="600"
+                  height="400"
+                />
+              </a>
+              <div class="desc">Usuarios</div>
+            </div>
+  
+            <div class="gallery">
+              <a  href="/vehicle/list-vehicle" >
+                <img
+                  src="assets/imgs/autobus.png"
+                  alt="Forest"
+                  width="600"
+                  height="400"
+                />
+              </a>
+              <div class="desc">Vehículos</div>
+            </div>
+  
+            <div class="gallery">
+              <a href="#" >
+                <img
+                  src="assets/imgs/conductor.png"
+                  alt="Northern Lights"
+                  width="600"
+                  height="400"
+                />
+              </a>
+              <div class="desc">Conductores</div>
+            </div>
+          </div>
+  
+          <div class="column">
+            <div class="gallery">
+              <a  href="route/list-route" >
+                <img
+                  src="assets/imgs/camino-adelante-perspectiva-recta.png"
+                  alt="Mountains"
+                  width="600"
+                  height="400"
+                />
+              </a>
+              <div class="desc">Rutas</div>
+            </div>
+  
+            <div class="gallery">
+              <a  href="programming/list-programming" >
+                <img
+                  src="assets/imgs/calendario.png"
+                  alt="Mountains"
+                  width="600"
+                  height="400"
+                />
+              </a>
+              <div class="desc">Programación de Rutas</div>
+            </div>
+  
+            <div class="gallery">
+              <a  href="#" >
+                <img
+                  src="assets/imgs/boleto.png"
+                  alt="Mountains"
+                  width="600"
+                  height="400"
+                />
+              </a>
+              <div class="desc">Gestión de Tickets</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="col-md-7 text-center justify-content-center auth-bg-section margin-left: -20px;"
+        style="margin-left: -30px"
+      >
+
+        <div style="margin: 18% auto">
+          <h1 class="text-reset">Mantenimiento de Conductores</h1>
+          <p>Diligencia el formulario para agregar una nuevo conductor</p>
+  
+          <div class="col col-lg-12">
+            
+            <div class="list-group">
+              <button
+                type="button"
+                class="btn btn-info"
+                title="Agregar Conductor"
+                data-toggle="modal"
+                (click)="onShowAddProgramming(item)"
+                data-target="#createDriver"
+              >
+                Agregar Conductor
+              </button>
+
+              <br />
+
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Tipo_Doc</th>
+                    <th scope="col">Documento</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let item of routes; let i = index"
+                    (click)="routeSelected(item)"
+                  >
+                    <td>{{ item?.nombre }}</td>
+                    <td>{{ item?.fecha }} / {{ item.hora }}</td>
+                    <ng-container *ngIf="item.estado == 1">
+                      <td>Activo</td>
+                    </ng-container>
+                    <ng-container *ngIf="item.estado == 0">
+                      <td>Inactivo</td>
+                    </ng-container>
+                    <td>{{ item?.precio }}</td>
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-outline-info"
+                        (click)="onShowAddProgramming(item)"
+                        data-toggle="modal"
+                        data-target="#addProgramming"
+                        title="Programar ruta"
+                      >
+                        <i class="fas fa-user-clock"></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        *ngIf="item.estado == 1"
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="onShowEditRoute(item)"
+                        data-toggle="modal"
+                        data-target="#editRoute"
+                        title="Editar ruta"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button
+                        *ngIf="item.estado == 1"
+                        type="button"
+                        style="margin-left: 10px"
+                        class="btn btn-danger"
+                        (click)="onDeleteRoute(i)"
+                        title="Borrar"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                      <button
+                        *ngIf="item.estado == 0"
+                        type="button"
+                        class="btn btn-outline-success"
+                        (click)="onActivateRoute(i)"
+                        title="Desactivar ruta"
+                      >
+                        <i class="fas fa-arrow-up"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <!--<pre>{{routes | json}}</pre>-->
+    <app-spinner [show]="showLoader"></app-spinner>
+    <app-create-driver-dialog
+      #createDriverDialog
+      (createDriver)="onCreateDriver($event)"
+    >
+    </app-create-driver-dialog>
+    <app-edit-driver-dialog #editDriverDialog (editeDriver)="onEditDriver($event)">
+    </app-edit-driver-dialog>
+  
+    
+    
+  </div>
+  
