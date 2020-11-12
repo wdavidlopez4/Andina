@@ -104,7 +104,7 @@
               </thead>
               <tbody>
                 <tr
-                  *ngFor="let item of programmings; let i = index"
+                  *ngFor="let item of programmingstest; let i = index"
                   (click)="programmingSelected(item)">
                   <td>{{ item?.nombre }}</td>
                   <td>{{ item?.fecha }} / {{ item.hora }}</td>
@@ -112,15 +112,6 @@
                   <td>{{ item?.vehiculo?.marca }}</td>
                   <td>{{ item?.estado }}</td>
                   <td>
-<!--                    <button-->
-<!--                      type="button"-->
-<!--                      class="btn btn-primary"-->
-<!--                      (click)="onShowEditProgramming(item)"-->
-<!--                      data-toggle="modal"-->
-<!--                      data-target="#editProgramming"-->
-<!--                      title="Editar programación">-->
-<!--                      <i class="fas fa-edit"></i>-->
-<!--                    </button>-->
                   </td>
                 </tr>
               </tbody>
@@ -132,8 +123,4 @@
   </div>
   <!--<pre>{{routes | json}}</pre>-->
   <app-spinner [show]="showLoader"></app-spinner>
-  <app-edit-programming-dialog
-    #editProgrammingDialog
-    (editeProgramming)="onEditProgramming($event)">
-  </app-edit-programming-dialog>
 </div>

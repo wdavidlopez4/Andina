@@ -11,4 +11,5 @@ export class Ruta {
   id_conductor?: Conductor;
   id_vehiculo?: Vehiculo;
   paradas?: Paradas[];
+  estado?: number;
 }

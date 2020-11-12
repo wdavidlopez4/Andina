@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear nueva programación de rutas</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Programar ruta</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -27,7 +27,7 @@
               <option [value]="item.id" *ngFor="let item of vehiculos">{{item?.nombre}}</option>
             </select>
           </div>
-          <pre>{{form.value | json}}</pre>
+<!--          <pre>{{form.value | json}}</pre>-->
         </form>
       </div>
       <div class="modal-footer">

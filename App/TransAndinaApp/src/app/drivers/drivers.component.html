@@ -8,13 +8,13 @@
       <h1 class="text-reset">Conductores</h1>
       <p>Diligencia el formulario para agregar un nuevo conductor.</p>
     </div>
-    
+
     <div class="col col-lg-12">
 
       <form [formGroup]="form" id="registerDriversform">
 
         <div class="form-group">
-          <label for="Tipo_Doc">Tipo Documento</label>
+          <label>Tipo Documento</label>
           <select
             class="form-control"
             id="tipo"
@@ -31,7 +31,7 @@
 
         <div class="form-group">
           <label for="Documento">Documento</label>
-      
+
           <input
             type="text"
             class="form-control"
@@ -41,10 +41,10 @@
           />
         </div>
 
-        
+
         <div class="form-group">
           <label for="Nombre_Cond">Nombres</label>
-      
+
           <input
             type="text"
             class="form-control"
@@ -56,7 +56,7 @@
 
         <div class="form-group">
           <label for="Apellido_Cond">Apellidos</label>
-      
+
           <input
             type="text"
             class="form-control"
@@ -68,7 +68,7 @@
 
         <div class="form-group">
           <label for="Celular_Cond">Número Celular</label>
-      
+
           <input
             type="text"
             class="form-control"
@@ -78,11 +78,10 @@
           />
         </div>
 
-        
+
         <div class="form-row">
           <div class="col-12">
             <button
-              (click)="Submit()"
               [disabled]="!form.valid"
               type="submit"
               class="btn btn-info btn-block mb-3 button-submit"

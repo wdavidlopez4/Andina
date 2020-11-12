@@ -88,8 +88,7 @@
     </div>
     <div
       class="col-md-7 text-center justify-content-center auth-bg-section margin-left: -20px;"
-      style="margin-left: -30px"
-    >
+      style="margin-left: -30px">
       <div style="margin: 18% auto">
         <h1 class="text-reset">Administración de rutas</h1>
         <p>Diligencia el formulario para agregar una nueva ruta.</p>
@@ -101,81 +100,77 @@
               class="btn btn-info"
               title="Agregar ruta"
               data-toggle="modal"
-              data-target="#createRoute"
-            >
+              data-target="#createRoute">
               Agregar ruta
             </button>
-            <br />
+            <br/>
             <table class="table table-hover">
               <thead>
-                <tr>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Fecha/Hora</th>
-                  <th scope="col">Estado</th>
-                  <th scope="col">Precio</th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                </tr>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Fecha/Hora</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Precio</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
               </thead>
               <tbody>
-                <tr
-                  *ngFor="let item of routes; let i = index"
-                  (click)="routeSelected(item)"
-                >
-                  <td>{{ item?.nombre }}</td>
-                  <td>{{ item?.fecha }} / {{ item.hora }}</td>
-                  <ng-container *ngIf="item.estado == 1">
-                    <td>Activo</td>
-                  </ng-container>
-                  <ng-container *ngIf="item.estado == 0">
-                    <td>Inactivo</td>
-                  </ng-container>
-                  <td>{{ item?.precio }}</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-outline-info"
-                      (click)="onShowAddProgramming(item.id, item.id_conductor, item.id_vehiculo)"
-                      data-toggle="modal"
-                      data-target="#addProgramming"
-                      title="Programar ruta"
-                    >
-                      <i class="fas fa-user-clock"></i>
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      *ngIf="item.estado == 1"
-                      type="button"
-                      class="btn btn-primary"
-                      (click)="onShowEditRoute(item)"
-                      data-toggle="modal"
-                      data-target="#editRoute"
-                      title="Editar ruta"
-                    >
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    <button
-                      *ngIf="item.estado == 1"
-                      type="button"
-                      style="margin-left: 10px"
-                      class="btn btn-danger"
-                      (click)="onDeleteRoute(i)"
-                      title="Borrar"
-                    >
-                      <i class="fas fa-trash"></i>
-                    </button>
-                    <button
-                      *ngIf="item.estado == 0"
-                      type="button"
-                      class="btn btn-outline-success"
-                      (click)="onActivateRoute(i)"
-                      title="Desactivar ruta"
-                    >
-                      <i class="fas fa-arrow-up"></i>
-                    </button>
-                  </td>
-                </tr>
+              <tr
+                *ngFor="let item of routestest; let i = index"
+                (click)="routeSelected(item)">
+                <td>{{ item?.nombre }}</td>
+                <td>{{ item?.fecha }} / {{ item.hora }}</td>
+                <ng-container *ngIf="item.estado == 1">
+                  <td>Activo</td>
+                </ng-container>
+                <ng-container *ngIf="item.estado == 0">
+                  <td>Inactivo</td>
+                </ng-container>
+                <td>{{ item?.precio }}</td>
+                <td>
+                  <button *ngIf="item.estado == 1"
+                    type="button"
+                    class="btn btn-outline-info"
+                    (click)="onShowAddProgramming(item.id_conductor, item.id_vehiculo)"
+                    data-toggle="modal"
+                    data-target="#addProgramming"
+                    title="Programar ruta">
+                    <i class="fas fa-user-clock"></i>
+                  </button>
+                </td>
+                <td>
+                  <button
+                    *ngIf="item.estado == 1"
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="onShowEditRoute(item)"
+                    data-toggle="modal"
+                    data-target="#editRoute"
+                    title="Editar ruta"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button
+                    *ngIf="item.estado == 1"
+                    type="button"
+                    style="margin-left: 10px"
+                    class="btn btn-danger"
+                    (click)="deleteruta(item.id)"
+                    title="Borrar"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                  <button
+                    *ngIf="item.estado == 0"
+                    type="button"
+                    class="btn btn-outline-success"
+                    (click)="activarRuta(item.id)"
+                    title="Desactivar ruta">
+                    <i class="fas fa-arrow-up"></i>
+                  </button>
+                </td>
+              </tr>
               </tbody>
             </table>
           </div>
@@ -183,57 +178,54 @@
         <div class="col-md-6" style="text-align: center">
           <div
             class="list-group"
-            *ngIf="routeSelectedId && routeSelectedId.estado == 1"
-          >
+            *ngIf="routeSelectedId && routeSelectedId.estado == 1">
             <button
               type="button"
               class="btn btn-success"
               data-toggle="modal"
               data-target="#createStop"
-              title="Agregar parada"
-            >
+              title="Agregar parada">
               Agregar parada
             </button>
             <table class="table">
               <thead>
-                <tr>
-                  <th colspan="3" scope="col">
-                    Paradas de la ruta {{ routeSelectedId.nombre }}
-                  </th>
-                </tr>
-                <tr>
-                  <th scope="col">Orden</th>
-                  <th scope="col">parada</th>
-                  <th scope="col">Acciones</th>
-                </tr>
+              <tr>
+                <th colspan="3" scope="col">
+                  Paradas de la ruta {{ routeSelectedId.nombre }}
+                </th>
+              </tr>
+              <tr>
+                <th scope="col">Orden</th>
+                <th scope="col">parada</th>
+                <th scope="col">Acciones</th>
+              </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of routeSelectedId.paradas; let i = index">
-                  <th>{{ i + 1 }}</th>
-                  <td>{{ item?.nombre }}</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      (click)="onShowEditStop(item)"
-                      data-toggle="modal"
-                      title="Editar"
-                      data-target="#editStop"
-                    >
-                      <i class="fas fa-edit"></i>
-                    </button>
+              <tr *ngFor="let item of routeSelectedId.paradas; let i = index">
+                <th>{{ i + 1 }}</th>
+                <td>{{ item?.nombre }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="onShowEditStop(item)"
+                    data-toggle="modal"
+                    title="Editar"
+                    data-target="#editStop">
+                    <i class="fas fa-edit"></i>
+                  </button>
 
-                    <button
-                      type="button"
-                      style="margin-left: 10px"
-                      class="btn btn-danger"
-                      (click)="onDeleteStop(item.id)"
-                      title="Borrar"
-                    >
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </td>
-                </tr>
+                  <button
+                    type="button"
+                    style="margin-left: 10px"
+                    class="btn btn-danger"
+                    (click)="onDeleteStop(item.id)"
+                    title="Borrar"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
               </tbody>
             </table>
           </div>
@@ -261,8 +253,7 @@
 
   <app-create-stop-dialog
     #createStopDialog
-    (createStop)="onCreateStop($event, routeSelectedId)"
-  >
+    (createStop)="onCreateStop($event, routeSelectedId)">
   </app-create-stop-dialog>
   <app-edit-stop-dialog #editStopDialog (editeStop)="onEditStop($event)">
   </app-edit-stop-dialog>
