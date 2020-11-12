@@ -10,8 +10,8 @@
     >
       <div style="margin: 0 auto">
         <div class="column">
-          <div class="gallery">
-            <a href="">
+          <div class="gallery" routerLinkActive="active">
+            <a [routerLink]="['/home']">
               <img
                 src="assets/imgs/usuario.png"
                 alt="Cinque Terre"
@@ -22,8 +22,8 @@
             <div class="desc">Usuarios</div>
           </div>
 
-          <div class="gallery">
-            <a href="/vehicle/list-vehicle">
+          <div class="gallery" routerLinkActive="active">
+            <a [routerLink]="['/vehicle/list-vehicle']">
               <img
                 src="assets/imgs/autobus.png"
                 alt="Forest"
@@ -34,8 +34,8 @@
             <div class="desc">Vehículos</div>
           </div>
 
-          <div class="gallery">
-            <a href="/conductores">
+          <div class="gallery" routerLinkActive="active">
+            <a [routerLink]="['/conductores']">
               <img
                 src="assets/imgs/conductor.png"
                 alt="Northern Lights"
@@ -57,11 +57,11 @@
                 height="400"
               />
             </a>
-            <div class="desc">Rutas</div>
+            <div class="desc">Administración de rutas</div>
           </div>
 
-          <div class="gallery">
-            <a href="programming/list-programming">
+          <div class="gallery" routerLinkActive="active">
+            <a [routerLink]="['/programming/list-programming']">
               <img
                 src="assets/imgs/calendario.png"
                 alt="Mountains"
@@ -69,7 +69,7 @@
                 height="400"
               />
             </a>
-            <div class="desc">Programación de Rutas</div>
+            <div class="desc">Rutas</div>
           </div>
 
           <div class="gallery">
@@ -91,7 +91,7 @@
       style="margin-left: -30px"
     >
       <div style="margin: 18% auto">
-        <h1 class="text-reset">Rutas</h1>
+        <h1 class="text-reset">Administración de rutas</h1>
         <p>Diligencia el formulario para agregar una nueva ruta.</p>
 
         <div class="col col-lg-12">
@@ -135,7 +135,7 @@
                     <button
                       type="button"
                       class="btn btn-outline-info"
-                      (click)="onShowAddProgramming(item)"
+                      (click)="onShowAddProgramming(item.id, item.id_conductor, item.id_vehiculo)"
                       data-toggle="modal"
                       data-target="#addProgramming"
                       title="Programar ruta"
@@ -245,16 +245,18 @@
   <app-spinner [show]="showLoader"></app-spinner>
   <app-create-route-dialog
     #createRouteDialog
-    (createRoute)="onCreateRoute($event)"
-  >
+    (createRoute)="onCreateRoute($event)">
   </app-create-route-dialog>
   <app-edit-route-dialog #editRouteDialog (editeRoute)="onEditRoute($event)">
   </app-edit-route-dialog>
 
   <app-add-programming-dialog
     #addProgrammingDialog
-    (addProgramming)="onAddProgramming($event)"
-  >
+    [conductores]="conductores"
+    [drivers]="drivers"
+    [vehicles]="vehicles"
+    [vehiculos]="vehiculos"
+    (createPogramingRoute)="onAddProgramming($event)">
   </app-add-programming-dialog>
 
   <app-create-stop-dialog

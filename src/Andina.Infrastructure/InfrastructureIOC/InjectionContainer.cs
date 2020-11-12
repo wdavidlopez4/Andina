@@ -10,6 +10,12 @@ using System.Collections.Generic;
 using System.Text;
 using Andina.Application.UsuarioServices.Interfaces;
 using Andina.Application.UsuarioServices.Implementation;
+using Andina.Application.VehiculoServices.Interfaces;
+using Andina.Application.VehiculoServices.Implementation;
+using Andina.Application.TipoVehiculoServices.Interfaces;
+using Andina.Application.TipoVehiculoServices.Implementation;
+using Andina.Application.MarcaVehiculoServices.Implementation;
+using Andina.Application.MarcaVehiculoServices.Interfaces;
 
 namespace Andina.Infrastructure.InfrastructureIOC
 {
@@ -28,6 +34,9 @@ namespace Andina.Infrastructure.InfrastructureIOC
         public static void InyectarServicios(IServiceCollection services)
         {
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IVehiculoService, VehiculoService>();
+            services.AddScoped<ITipoVehiculoService, TipoVehiculoService>();
+            services.AddScoped<IMarcaVehiculoService, MarcaVehiculoService>();
         }
 
         //inyecta la configuracion de la db 

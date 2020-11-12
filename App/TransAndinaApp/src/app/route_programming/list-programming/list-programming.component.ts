@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EditProgrammingDialogComponent} from "../edit-programming-dialog/edit-programming-dialog.component";
 import {Route} from "@angular/router";
 import {Ruta} from "../../models/Ruta";
+import {ProgrammingService} from "../../Service/programming/programming-service";
 
 @Component({
   selector: 'app-list-programming',
@@ -15,29 +16,42 @@ export class ListProgrammingComponent implements OnInit {
   programmingSelectedId: any;
   showLoader: boolean = false;
   form: FormGroup;
-  routesa: Ruta[];
+  programmings: any[];
 
   @ViewChild('editProgrammingDialog', {static: true})
   editProgrammingDialog: EditProgrammingDialogComponent;
 
   constructor(
-    private routeService: RouteService,
+    private programmingService: ProgrammingService,
   ) {
   }
 
-  programmings = [
+  programmingstest = [
     {
-      id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12 / 08:43', id_conductor: 2, id_vehiculo: 1
+      id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12  08:43', id_conductor: 2, id_vehiculo: 1, estado: 'En curso',
+      conductor: {
+        nombre: 'Juan'
+      },
+      vehiculo: {
+        marca: 'Mazda'
+      },
+
     },
     {
-      id: 2, nombre: 'Medellin - Salento', fecha: '2020-10-12 / 08:43', id_conductor: 2, id_vehiculo: 1}
+      id: 2, nombre: 'Medellin - Salento', fecha: '2020-10-12  08:43', id_conductor: 2, id_vehiculo: 1,  estado: 'Finalizada',
+      conductor: {
+        nombre: 'Carlos'
+      },
+      vehiculo: {
+        marca: 'Nissan'
+      },}
   ];
 
 
   ngOnInit() {
-    this.routeService.getRoutes()
+    this.programmingService.getProgrammings()
       .subscribe(response => {
-        this.routesa = response;
+        this.programmings = response;
       });
   }
 
@@ -53,7 +67,7 @@ export class ListProgrammingComponent implements OnInit {
   onEditProgramming(e) {
     console.log(e);
     this.showLoader = true;
-    this.routeService.addProgramming(e).subscribe((data) => {
+    this.programmingService.createProgramming(e).subscribe((data) => {
       this.showLoader = false;
     }, error => {
       console.log(error);

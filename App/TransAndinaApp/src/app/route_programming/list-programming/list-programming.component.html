@@ -6,8 +6,7 @@
   <div class="row vh-100 col-12">
     <div
       class="col-md-6 text-center py-5 d-flex flex-column justify-content-center auth-bg-section"
-      style="text-align: center"
-    >
+      style="text-align: center">
       <div style="margin: 0 auto">
         <div class="column">
           <div class="gallery">
@@ -48,8 +47,8 @@
         </div>
 
         <div class="column">
-          <div class="gallery">
-            <a href="route/list-route">
+          <div class="gallery" routerLinkActive="active">
+            <a [routerLink]="['/route/list-route']">
               <img
                 src="assets/imgs/camino-adelante-perspectiva-recta.png"
                 alt="Mountains"
@@ -57,7 +56,7 @@
                 height="400"
               />
             </a>
-            <div class="desc">Rutas</div>
+            <div class="desc">Administración de rutas</div>
           </div>
 
           <div class="gallery">
@@ -69,7 +68,7 @@
                 height="400"
               />
             </a>
-            <div class="desc">Programación de Rutas</div>
+            <div class="desc">Rutas</div>
           </div>
 
           <div class="gallery">
@@ -86,12 +85,9 @@
         </div>
       </div>
     </div>
-    <div
-      class="col-md-6 text-center justify-content-center auth-bg-section margin-left: -20px;"
-      style="margin-left: -30px"
-    >
+    <div class="col-md-6 text-center justify-content-center auth-bg-section margin-left: -20px;" style="margin-left: -30px">
       <div style="margin: 18% auto">
-        <h1 class="text-reset">Programaciones de rutas</h1>
+        <h1 class="text-reset">Rutas</h1>
 
         <div class="col col-lg-12">
           <div class="list-group">
@@ -102,29 +98,29 @@
                   <th scope="col">Fecha/Hora</th>
                   <th scope="col">Conductor</th>
                   <th scope="col">Vehiculo</th>
+                  <th scope="col">Estado</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr
                   *ngFor="let item of programmings; let i = index"
-                  (click)="programmingSelected(item)"
-                >
+                  (click)="programmingSelected(item)">
                   <td>{{ item?.nombre }}</td>
                   <td>{{ item?.fecha }} / {{ item.hora }}</td>
-                  <td>{{ item?.id_conductor }}</td>
-                  <td>{{ item?.id_vehiculo }}</td>
+                  <td>{{ item?.conductor?.nombre }}</td>
+                  <td>{{ item?.vehiculo?.marca }}</td>
+                  <td>{{ item?.estado }}</td>
                   <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      (click)="onShowEditProgramming(item)"
-                      data-toggle="modal"
-                      data-target="#editProgramming"
-                      title="Editar programación"
-                    >
-                      <i class="fas fa-edit"></i>
-                    </button>
+<!--                    <button-->
+<!--                      type="button"-->
+<!--                      class="btn btn-primary"-->
+<!--                      (click)="onShowEditProgramming(item)"-->
+<!--                      data-toggle="modal"-->
+<!--                      data-target="#editProgramming"-->
+<!--                      title="Editar programación">-->
+<!--                      <i class="fas fa-edit"></i>-->
+<!--                    </button>-->
                   </td>
                 </tr>
               </tbody>
@@ -136,10 +132,8 @@
   </div>
   <!--<pre>{{routes | json}}</pre>-->
   <app-spinner [show]="showLoader"></app-spinner>
-
   <app-edit-programming-dialog
     #editProgrammingDialog
-    (editeProgramming)="onEditProgramming($event)"
-  >
+    (editeProgramming)="onEditProgramming($event)">
   </app-edit-programming-dialog>
 </div>

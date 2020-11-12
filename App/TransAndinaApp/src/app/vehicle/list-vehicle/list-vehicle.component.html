@@ -10,8 +10,8 @@
     >
       <div style="margin: 0 auto">
         <div class="column">
-          <div class="gallery">
-            <a href="">
+          <div class="gallery" routerLinkActive="active">
+            <a [routerLink]="['/home']">
               <img
                 src="assets/imgs/usuario.png"
                 alt="Cinque Terre"
@@ -34,8 +34,8 @@
             <div class="desc">Vehículos</div>
           </div>
 
-          <div class="gallery">
-            <a href="/conductores">
+          <div class="gallery" routerLinkActive="active">
+            <a [routerLink]="['/conductores']">
               <img
                 src="assets/imgs/conductor.png"
                 alt="Northern Lights"
@@ -48,8 +48,8 @@
         </div>
 
         <div class="column">
-          <div class="gallery">
-            <a href="route/list-route">
+          <div class="gallery" routerLinkActive="active">
+            <a [routerLink]="['/route/list-route']">
               <img
                 src="assets/imgs/camino-adelante-perspectiva-recta.png"
                 alt="Mountains"
@@ -57,11 +57,11 @@
                 height="400"
               />
             </a>
-            <div class="desc">Rutas</div>
+            <div class="desc">Administración de rutas</div>
           </div>
 
-          <div class="gallery">
-            <a href="programming/list-programming">
+          <div class="gallery" routerLinkActive="active">
+            <a [routerLink]="['/programming/list-programming']">
               <img
                 src="assets/imgs/calendario.png"
                 alt="Mountains"
@@ -69,7 +69,7 @@
                 height="400"
               />
             </a>
-            <div class="desc">Programación de Rutas</div>
+            <div class="desc">Rutas</div>
           </div>
 
           <div class="gallery">

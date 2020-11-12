@@ -8,18 +8,22 @@ import {CreateStopDialogComponent} from "../create-stop-dialog/create-stop-dialo
 import {EditStopDialogComponent} from "../edit-stop-dialog/edit-stop-dialog.component";
 import {Route} from "@angular/router";
 import {Ruta} from "../../models/Ruta";
+import {Conductor} from "../../models/Conductor";
+import {Vehiculo} from "../../models/Vehiculo";
 
 @Component({
   selector: 'app-list-route',
   templateUrl: './list-route.component.html',
-  styleUrls: ['../.././home/home.component.css','./list-route.component.css']
+  styleUrls: ['../.././home/home.component.css', './list-route.component.css']
 })
 export class ListRouteComponent implements OnInit {
 
   routeSelectedId: any;
   showLoader: boolean = false;
   form: FormGroup;
-  routesa: Ruta[];
+  routes: Ruta[];
+  drivers: Conductor[];
+  vehicles: Vehiculo[];
 
   @ViewChild('createRouteDialog', {static: true})
   createRouteDialog: CreateRouteDialogComponent;
@@ -32,7 +36,7 @@ export class ListRouteComponent implements OnInit {
 
   @ViewChild('createStopDialog', {static: true})
   createStopDialog: CreateStopDialogComponent;
-  
+
   @ViewChild('editStopDialog', {static: true})
   editStopDialog: EditStopDialogComponent;
 
@@ -41,9 +45,11 @@ export class ListRouteComponent implements OnInit {
   ) {
   }
 
-  routes = [
+  routestest = [
     {
       id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 1, estado: 1,
+      id_conductor: 1,
+      id_vehiculo: 1,
       paradas: [
         {id: 1, nombre: 'La Vega'},
         {id: 2, nombre: 'Honda'},
@@ -56,28 +62,57 @@ export class ListRouteComponent implements OnInit {
     },
     {
       id: 2, nombre: 'Medellin - Salento', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 2, estado: 0,
+      id_conductor: 1,
+      id_vehiculo: 1,
       paradas: [
         {id: 1, nombre: 'Terminal'},
       ]
     },
     {
       id: 3, nombre: 'Neiva - Bogotá', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 3, estado: 1,
+      id_conductor: 1,
+      id_vehiculo: 1,
       paradas: [
         {id: 1, nombre: 'Terminal'},
       ]
     },
-    {id: 4, nombre: 'La mesa - Girardot', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 4, estado: 1,
+    {
+      id: 4, nombre: 'La mesa - Girardot', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 4, estado: 1,
+      id_conductor: 1,
+      id_vehiculo: 1,
       paradas: [
         {id: 1, nombre: 'Terminal'},
       ]
     }
   ];
 
+  conductores = [
+    {nombre: 'Carlos', id: 1},
+    {nombre: 'Juan', id: 2},
+    {nombre: 'Mario', id: 3},
+    {nombre: 'Antonio', id: 4},
+  ]
+
+  vehiculos = [
+    {nombre: 'Mazda', id: 1},
+    {nombre: 'Ford', id: 2},
+    {nombre: 'Nissan', id: 3},
+    {nombre: 'Renault', id: 4},
+  ]
+
 
   ngOnInit() {
     this.routeService.getRoutes()
       .subscribe(response => {
-        this.routesa = response;
+        this.routes = response;
+      });
+    this.routeService.getDrivers()
+      .subscribe(response => {
+        this.drivers = response;
+      });
+    this.routeService.getVehicles()
+      .subscribe(response => {
+        this.vehicles = response;
       });
   }
 
@@ -90,10 +125,10 @@ export class ListRouteComponent implements OnInit {
     this.editRouteDialog.loadFormRoute(route);
   }
 
-  onShowAddProgramming(route) {
-    this.addProgrammingDialog.loadFormRoute(route);
+  onShowAddProgramming(id_conductor, id_vehiculo) {
+    this.addProgrammingDialog.loadFormRoute(id_conductor, id_vehiculo);
   }
-  
+
   onShowEditStop(route) {
     this.editStopDialog.rutaId = this.routeSelectedId;
     this.editStopDialog.loadFormStop(route);
@@ -123,14 +158,22 @@ export class ListRouteComponent implements OnInit {
     });
   }
 
-  onAddProgramming(e) {
+
+  onAddProgramming(data) {
+    console.log(data);
+    const rutaId = this.routeSelectedId.id;
     this.showLoader = true;
-    this.routeService.addProgramming(e).subscribe((data) => {
+    this.routeService.createProgramingRoute({data, rutaId}).subscribe((data) => {
       this.showLoader = false;
     }, error => {
+      console.log(error);
       this.showLoader = false;
+      this.createRouteDialog.form.reset();
     });
   }
+
+
+
   onDeleteRoute(roueId: number) {
     console.log(roueId);
     this.showLoader = true;
@@ -191,16 +234,17 @@ export class ListRouteComponent implements OnInit {
 
   addRuta() {
     const aux = this.createRouteDialog.form.getRawValue();
-    this.routes.push({
+    this.routestest.push({
       id: 1, nombre: aux.nombre, fecha: aux.fecha, hora: aux.hora, precio: aux.precio, value: 1, estado: 1,
+      id_conductor: 1,
+      id_vehiculo: 1,
       paradas: []
     });
   }
 
   addStop(data: any) {
     const aux = this.createStopDialog.form.getRawValue();
-     this.routes[this.routeSelectedId.id - 1].
-      paradas.push({
+    this.routestest[this.routeSelectedId.id - 1].paradas.push({
       id: 1, nombre: aux.nombre
     });
   }

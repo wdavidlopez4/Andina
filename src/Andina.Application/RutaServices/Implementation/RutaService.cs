@@ -51,6 +51,31 @@ namespace Andina.Application.RutaServices.Implementation
 
         }
 
+        public async Task<RutaDto> ObtenerRuta()
+        {
+            //obtener modelo
+            var ruta = await this.repository.Obtener<Ruta>();
+
+            //verificar modelo
+            if (ruta != null)
+            {
+                //crear dto de modelo y retornarlo
+                return new RutaDto
+                {
+                    Nombre = ruta.Nombre,
+                    NumeroNodos = ruta.NumeroNodos,
+                    Nodo = ruta.Nodo,
+                    Estado = ruta.Estado
+                };
+
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
         public async Task<RutaDto> ObtenerRuta(Guid id)
         {
             //obtener modelo
@@ -101,8 +126,9 @@ namespace Andina.Application.RutaServices.Implementation
             {
                 return null;
             }
-            
+
         }
+
         public async Task<RutaDto> ModificarRuta(RutaDto rutaDto)
         {
             if (rutaDto != null)
@@ -126,6 +152,18 @@ namespace Andina.Application.RutaServices.Implementation
             else
             {
                 return null;
+            }
+        }
+
+        public async Task<bool> ExisteRuta(Guid id)
+        {
+            if (id != null)
+            {
+                return await this.repository.Existe<Ruta>(x => x.Id == id);
+            }
+            else
+            {
+                return false;
             }
         }
     }

@@ -72,6 +72,29 @@ namespace Andina.Infrastructure.InfrastructureRepository
             }
         }
 
+        public async Task<List<T>> ObtenerLista<T>(Expression<Func<T, bool>> expression) where T : class
+        {
+            try
+            {
+                return await contextDb.GetCollection<T>().AsQueryable().Where(expression).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<T>> ObtenerLista<T>() where T : class
+        {
+            try
+            {
+                return await contextDb.GetCollection<T>().AsQueryable().ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public async Task<T> Modificar<T>(Expression<Func<T, bool>> expression, T obj) where T : class
         {
