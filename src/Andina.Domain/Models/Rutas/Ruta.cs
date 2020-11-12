@@ -5,8 +5,6 @@ namespace Andina.Domain.Models.Rutas
 {
     public class Ruta : BaseModel
     {
-        [BsonElement("id")]
-        public int Id { get; set; }
 
         [BsonElement("nombre")]
         public string Nombre { get; set; }
@@ -26,7 +24,6 @@ namespace Andina.Domain.Models.Rutas
 
         public Ruta(int id, string nombre, int numeroNodos, Ciudad nodo, int estado)
         {
-            this.Id = id;
             this.Nombre = nombre;
             this.NumeroNodos = numeroNodos;
             this.Nodo = nodo;

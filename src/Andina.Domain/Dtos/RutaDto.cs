@@ -1,11 +1,12 @@
 ﻿using Andina.Domain.Models.Rutas;
 using Andina.Domain.Models.Ciudades;
+using System;
 
 namespace Andina.Domain.Dtos
 {
     public class RutaDto
     {
-        public int Id { get; set; } 
+        public Guid Id { get; set; }
 
         public string Nombre { get; set; }
 

@@ -10,6 +10,8 @@ namespace Andina.Domain.Models.Interfaces
     {
         public Task<T> Crear<T>(T objeto) where T : class;
 
+        public Task<T> Obtener<T>() where T : class;
+
         public Task<T> Obtener<T>(Guid id) where T : class;
 
         public Task<T> Obtener<T>(Expression<Func<T, bool>> expression) where T : class;

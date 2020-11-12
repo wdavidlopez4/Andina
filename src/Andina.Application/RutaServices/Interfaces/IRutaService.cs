@@ -10,6 +10,8 @@ namespace Andina.Application.RutaServices.Interfaces
 {
     public interface IRutaService
     {
+        public Task<RutaDto> ObtenerRuta();
+
         public Task<RutaDto> ObtenerRuta(Guid id);
 
         public Task<bool> GuardarRuta(RutaDto rutaDto);
@@ -17,5 +19,7 @@ namespace Andina.Application.RutaServices.Interfaces
         public Task<RutaDto> ObtenerRuta(Ciudad ciudad);
 
         public Task<RutaDto> ModificarRuta(RutaDto rutaDto);
+
+        public Task<bool> ExisteRuta(Guid Id);
     }
 }
