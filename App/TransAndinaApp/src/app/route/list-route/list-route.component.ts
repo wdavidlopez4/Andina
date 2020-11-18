@@ -8,7 +8,7 @@ import {CreateStopDialogComponent} from "../create-stop-dialog/create-stop-dialo
 import {EditStopDialogComponent} from "../edit-stop-dialog/edit-stop-dialog.component";
 import {Route} from "@angular/router";
 import {Ruta} from "../../models/Ruta";
-import {Conductor} from "../../models/Conductor";
+import {Persona} from "../../models/Persona";
 import {Vehiculo} from "../../models/Vehiculo";
 
 @Component({
@@ -22,7 +22,7 @@ export class ListRouteComponent implements OnInit {
   showLoader: boolean = false;
   form: FormGroup;
   routes: Ruta[];
-  drivers: Conductor[];
+  persons: Persona[];
   vehicles: Vehiculo[];
 
   @ViewChild('createRouteDialog', {static: true})
@@ -48,7 +48,7 @@ export class ListRouteComponent implements OnInit {
   routestest = [
     {
       id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 1, estado: 1,
-      id_conductor: null,
+      id_persona: null,
       id_vehiculo: null,
       paradas: [
         {id: 1, nombre: 'La Vega'},
@@ -62,7 +62,7 @@ export class ListRouteComponent implements OnInit {
     },
     {
       id: 2, nombre: 'Medellin - Salento', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 2, estado: 0,
-      id_conductor: 1,
+      id_persona: 1,
       id_vehiculo: 1,
       paradas: [
         {id: 1, nombre: 'Terminal'},
@@ -70,7 +70,7 @@ export class ListRouteComponent implements OnInit {
     },
     {
       id: 3, nombre: 'Neiva - Bogotá', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 3, estado: 1,
-      id_conductor: 1,
+      id_persona: 1,
       id_vehiculo: 1,
       paradas: [
         {id: 1, nombre: 'Terminal'},
@@ -78,7 +78,7 @@ export class ListRouteComponent implements OnInit {
     },
     {
       id: 4, nombre: 'La mesa - Girardot', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 4, estado: 1,
-      id_conductor: 1,
+      id_persona: 1,
       id_vehiculo: 1,
       paradas: [
         {id: 1, nombre: 'Terminal'},
@@ -86,7 +86,7 @@ export class ListRouteComponent implements OnInit {
     }
   ];
 
-  conductores = [
+  personas = [
     {nombre: 'John Peñuela', id: 1},
     {nombre: 'Juan Martinez', id: 2},
     {nombre: 'Mario Mendoza', id: 3},
@@ -106,9 +106,9 @@ export class ListRouteComponent implements OnInit {
       .subscribe(response => {
         this.routes = response;
       });
-    this.routeService.getDrivers()
+    this.routeService.getPersons()
       .subscribe(response => {
-        this.drivers = response;
+        this.persons = response;
       });
     this.routeService.getVehicles()
       .subscribe(response => {
@@ -125,8 +125,8 @@ export class ListRouteComponent implements OnInit {
     this.editRouteDialog.loadFormRoute(route);
   }
 
-  onShowAddProgramming(id_conductor, id_vehiculo) {
-    this.addProgrammingDialog.loadFormRoute(id_conductor, id_vehiculo);
+  onShowAddProgramming(id_persona, id_vehiculo) {
+    this.addProgrammingDialog.loadFormRoute(id_persona, id_vehiculo);
   }
 
   onShowEditStop(route) {
@@ -235,7 +235,7 @@ export class ListRouteComponent implements OnInit {
     const aux = this.createRouteDialog.form.getRawValue();
     this.routestest.push({
       id: 1, nombre: aux.nombre, fecha: aux.fecha, hora: aux.hora, precio: aux.precio, value: 1, estado: 1,
-      id_conductor: 1,
+      id_persona: 1,
       id_vehiculo: 1,
       paradas: []
     });

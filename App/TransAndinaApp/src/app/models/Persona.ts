@@ -6,6 +6,6 @@ export class Persona {
   telefono: string;
   direccion: string;
   email: string;
-  tipo_persona: string;
+  tipo_persona: number;
   estado: boolean;
 }

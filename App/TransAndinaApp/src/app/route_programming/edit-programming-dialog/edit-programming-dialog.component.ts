@@ -38,7 +38,7 @@ export class EditProgrammingDialogComponent implements OnInit {
   loadFormRoute(programacion: Programacion) {
     this.form = this.fb.group({
       id: [programacion.id, Validators.required],
-      id_conductor: [programacion.id_conductor, Validators.required],
+      id_conductor: [programacion.id_persona, Validators.required],
       id_vehiculo: [programacion.id_vehiculo, Validators.required]
     });
   }

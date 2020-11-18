@@ -35,7 +35,7 @@
             </div>
   
             <div class="gallery">
-              <a href="#" >
+              <a href="persons/list-persons" >
                 <img
                   src="assets/imgs/conductor.png"
                   alt="Northern Lights"
@@ -43,7 +43,7 @@
                   height="400"
                 />
               </a>
-              <div class="desc">Conductores</div>
+              <div class="desc">Personas</div>
             </div>
           </div>
   
@@ -93,8 +93,8 @@
       >
 
         <div style="margin: 18% auto">
-          <h1 class="text-reset">Mantenimiento de Conductores</h1>
-          <p>Diligencia el formulario para agregar una nuevo conductor</p>
+          <h1 class="text-reset">Mantenimiento de Personas</h1>
+          <p>Diligencia el formulario para agregar una nueva persona</p>
   
           <div class="col col-lg-12">
             
@@ -102,12 +102,11 @@
               <button
                 type="button"
                 class="btn btn-info"
-                title="Agregar Conductor"
+                title="Agregar Persona"
                 data-toggle="modal"
-                (click)="onShowAddProgramming(item)"
-                data-target="#createDriver"
+                data-target="#createPerson"
               >
-                Agregar Conductor
+                Agregar Persona
               </button>
 
               <br />
@@ -115,12 +114,13 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">Tipo_Doc</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Documento</th>
                     <th scope="col">Nombres</th>
                     <th scope="col">Apellidos</th>
-                    <th scope="col">Celular</th>
-                    <th scope="col">Estado</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Tipo_Persona</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                   </tr>
@@ -128,10 +128,10 @@
                 <tbody>
                   <tr
                     *ngFor="let item of routes; let i = index"
-                    (click)="routeSelected(item)"
+                    (click)="personSelected(item)"
                   >
-                    <td>{{ item?.nombre }}</td>
-                    <td>{{ item?.fecha }} / {{ item.hora }}</td>
+                    <td>{{ item?.id }}</td>
+                    <td>{{ item?.nit }} / {{ item.hora }}</td>
                     <ng-container *ngIf="item.estado == 1">
                       <td>Activo</td>
                     </ng-container>
@@ -194,15 +194,10 @@
     </div>
     <!--<pre>{{routes | json}}</pre>-->
     <app-spinner [show]="showLoader"></app-spinner>
-    <app-create-driver-dialog
-      #createDriverDialog
-      (createDriver)="onCreateDriver($event)"
+    <app-create-person-dialog
+      #createPersonDialog
+      (createPerson)="onCreatePerson($event)"
     >
-    </app-create-driver-dialog>
-    <app-edit-driver-dialog #editDriverDialog (editeDriver)="onEditDriver($event)">
-    </app-edit-driver-dialog>
-  
     
-    
-  </div>
+
   

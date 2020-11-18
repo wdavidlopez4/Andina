@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {Conductor} from "../../models/Conductor";
+import {Persona} from "../../models/Persona";
 import {catchError} from "rxjs/operators";
 import {Observable, pipe, throwError as observableThrowError} from 'rxjs';
 import {Route} from "@angular/router";
 
 
 @Injectable()
-export class DriverService {
+export class PersonService {
 
   private url: string;
   constructor(
@@ -16,33 +15,33 @@ export class DriverService {
     this.url = environment.endpoint;
   }
 
-  getDriver(): Observable<Conductor[]> {
+  getPerson(): Observable<Persona[]> {
     return this.http
-      .get<Conductor[]>(`${this.url}/driver/get-drivers`)
+      .get<Persona[]>(`${this.url}/person/get-persons`)
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 
-  createDriver(data: Conductor): Observable<Conductor> {
+  createPerson(data: Persona): Observable<Persona> {
     return this.http
-      .post<Conductor>(`${this.url}/driver/create-drivers`, data)
+      .post<Persona>(`${this.url}/person/create-persons`, data)
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 
-  editDriver(data: Conductor): Observable<Conductor> {
+  editPerson(data: Persona): Observable<Persona> {
     return this.http
-      .post<Conductor>(`${this.url}/driver/edit-drivers`, data)
+      .post<Persona>(`${this.url}/person/edit-persons`, data)
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 
-  deleteDriver(driverId: number): Observable<Conductor> {
+  deletePerson(personId: number): Observable<Persona> {
     return this.http
-      .delete<Conductor>(`${this.url}/driver/delete-drivers/${driverId}`)
+      .delete<Persona>(`${this.url}/person/delete-persons/${personId}`)
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 
-  activateDriver(driverId: number): Observable<Conductor> {
+  activatePerson(personId: number): Observable<Persona> {
     return this.http
-      .delete<Conductor>(`${this.url}/driver/activate-drivers/${driverId}`)
+      .delete<Persona>(`${this.url}/person/activate-persons/${personId}`)
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 }

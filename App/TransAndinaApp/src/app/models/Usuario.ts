@@ -4,7 +4,7 @@ export class Usuario {
   id?: number;
   id_persona: number;
   id_perfil: number;
-  login: string;
+  usuario: string;
   contraseña: string;
   estado: boolean;
 
