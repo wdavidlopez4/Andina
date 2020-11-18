@@ -7,7 +7,7 @@ import {catchError} from "rxjs/operators";
 import {Observable, pipe, throwError as observableThrowError} from 'rxjs';
 import {Paradas} from "../../models/Paradas";
 import {Route} from "@angular/router";
-import {Conductor} from "../../models/Conductor";
+import {Persona} from "../../models/Persona";
 import {Vehiculo} from "../../models/Vehiculo";
 
 
@@ -26,9 +26,9 @@ export class RouteService {
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 
-  getDrivers(): Observable<Conductor[]> {
+  getPersons(): Observable<Persona[]> {
     return this.http
-      .get<Conductor[]>(`${this.url}/route/get-drivers`)
+      .get<Persona[]>(`${this.url}/route/get-persons`)
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 

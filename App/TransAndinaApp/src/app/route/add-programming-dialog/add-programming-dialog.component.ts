@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Ruta} from "../../models/Ruta";
 import {RouteService} from "../../Service/route/route-service";
 import {RouterModule} from "@angular/router";
-import {Conductor} from "../../models/Conductor";
+import {Persona} from "../../models/Persona";
 import {Vehiculo} from "../../models/Vehiculo";
 
 @Component({
@@ -20,13 +20,13 @@ export class AddProgrammingDialogComponent implements OnInit {
   createPogramingRoute = new EventEmitter<any>();
 
   @Input()
-  conductores: Conductor;
+  personas: Persona;
 
   @Input()
   vehiculos: Vehiculo;
 
   @Input()
-  drivers: Conductor;
+  persons: Persona;
 
   @Input()
   vehicles: Vehiculo;
@@ -43,14 +43,14 @@ export class AddProgrammingDialogComponent implements OnInit {
 
   CreateForm() {
     this.form = this.fb.group({
-      id_conductor: ['', Validators.required],
+      id_persona: ['', Validators.required],
       id_vehiculo: ['', Validators.required],
     });
   }
 
-  loadFormRoute(id_conductor, id_vehiculo) {
+  loadFormRoute(id_persona, id_vehiculo) {
     this.form = this.fb.group({
-      id_conductor: [id_conductor, Validators.required],
+      id_persona: [id_persona, Validators.required],
       id_vehiculo: [id_vehiculo, Validators.required]
     });
   }

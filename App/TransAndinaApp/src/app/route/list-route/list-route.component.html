@@ -35,7 +35,7 @@
           </div>
 
           <div class="gallery" routerLinkActive="active">
-            <a [routerLink]="['/conductores']">
+            <a [routerLink]="['/persons/list-persons']">
               <img
                 src="assets/imgs/conductor.png"
                 alt="Northern Lights"
@@ -43,7 +43,7 @@
                 height="400"
               />
             </a>
-            <div class="desc">Conductores</div>
+            <div class="desc">Personas</div>
           </div>
         </div>
 
@@ -244,8 +244,8 @@
 
   <app-add-programming-dialog
     #addProgrammingDialog
-    [conductores]="conductores"
-    [drivers]="drivers"
+    [personas]="persona"
+    [persons]="persons"
     [vehicles]="vehicles"
     [vehiculos]="vehiculos"
     (createPogramingRoute)="onAddProgramming($event)">

@@ -1,0 +1,85 @@
+<div class="modal fade" id="createPerson" tabindex="-1" aria-labelledby="createDriver"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear nueva Persona</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" id="registerPersonsform">
+          
+  
+          <div class="form-group">
+            <label for="nit">Numero Documento</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="nit"
+              placeholder="Ingresar el numero de documento"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nombre">Nombres</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="nombre"
+              placeholder="Ingresar nombre"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="apellido">Apellidos</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="apellido"
+              placeholder="Ingresar apellidos"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Telefono</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="telefono"
+              placeholder="Ingresar el numero de Celular"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="direccion"
+              placeholder="Ingresar la Direccion"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="tipoSelect">Tipo_persona</label>
+            <select
+              class="form-control"
+              placeholder="Seleccione el tipo de persona"
+              formControlName="tipo_persona"
+            >
+              <option value="1">Usuario SIT</option>
+              <option value="2">Conductor</option>
+              
+            </select>
+          </div>
+        
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="form.reset()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="onCreatePerson()" data-dismiss="modal" [disabled]="!form.valid">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

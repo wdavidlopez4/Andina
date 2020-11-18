@@ -1,5 +1,5 @@
 import {Ruta} from "./Ruta";
-import {Conductor} from "./Conductor";
+import {Persona} from "./Persona";
 import {Vehiculo} from "./Vehiculo";
 
 export class Programacion {
@@ -8,10 +8,10 @@ export class Programacion {
     hora_salida: string;
     hora_llegada: string;
     id_ruta?: Ruta;
-    id_conductor?: Conductor;
+    id_persona?: Persona;
     id_vehiculo?: Vehiculo;
     estado: boolean;
 
-    conductor?: Conductor;
+    persona?: Persona;
     vehiculo?: Vehiculo;
   }

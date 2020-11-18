@@ -25,11 +25,10 @@ import { AddProgrammingDialogComponent } from './route/add-programming-dialog/ad
 import { ProgrammingService} from "./Service/programming/programming-service";
 import { ListProgrammingComponent } from './route_programming/list-programming/list-programming.component';
 import { EditProgrammingDialogComponent } from './route_programming/edit-programming-dialog/edit-programming-dialog.component';
-import { EditDriverDialogComponent} from './drivers/edit-driver-dialog/edit-driver-dialog.component';
-import { ListDriverComponent} from './drivers/list-driver/list-driver-dialog.component';
-import { DriverService} from './Service/driver/driver-service';
-import { CreateDriverDialogComponent} from "./drivers/create-driver-dialog/create-driver-dialog.component";
-
+import { CreatePersonDialogComponent} from './persons/create-persons-dialog/create-persons-dialog.component';
+import { EditPersonDialogComponent} from './persons/edit-persons-dialog/edit-persons-dialog.component';
+import { ListPersonComponent} from './persons/list-persons/list-persons-dialog.component';
+import { PersonService} from './Service/persons/person-service';
 
 
 @NgModule({
@@ -49,9 +48,10 @@ import { CreateDriverDialogComponent} from "./drivers/create-driver-dialog/creat
     ListProgrammingComponent,
     AddProgrammingDialogComponent,
     EditProgrammingDialogComponent,
-    CreateDriverDialogComponent,
-    EditDriverDialogComponent,
-    ListDriverComponent
+    CreatePersonDialogComponent,
+    EditPersonDialogComponent,
+    ListPersonComponent
+
   ],
   imports: [
     BrowserModule,
@@ -62,7 +62,7 @@ import { CreateDriverDialogComponent} from "./drivers/create-driver-dialog/creat
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [LoginService, RouteService,VehicleService,ProgrammingService, DriverService],
+  providers: [LoginService, RouteService,VehicleService,ProgrammingService, PersonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
