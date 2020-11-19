@@ -5,7 +5,7 @@
         "hora": "08:43",
         "precio": 20500,
         "value": 1,
-        "estado": 1,
+        "estado": true,
         "id_persona": null,
         "id_vehiculo": null,
         "persona": {
@@ -65,7 +65,7 @@
         "hora": "08:43",
         "precio": 20500,
         "value": 2,
-        "estado": 0,
+        "estado": false,
         "id_persona": 1,
         "id_vehiculo": 1,
         "vehiculo": {
@@ -100,7 +100,7 @@
         "hora": "08:43",
         "precio": 20500,
         "value": 3,
-        "estado": 1,
+        "estado": true,
         "id_persona": 1,
         "id_vehiculo": 1,
         "vehiculo": {
@@ -135,7 +135,7 @@
         "hora": "08:43",
         "precio": 20500,
         "value": 4,
-        "estado": 1,
+        "estado": true,
         "id_persona": 1,
         "id_vehiculo": 1,
         "vehiculo": {

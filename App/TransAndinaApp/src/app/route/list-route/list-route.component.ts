@@ -203,17 +203,15 @@ export class ListRouteComponent implements OnInit {
 
   deleteruta(id) {
     this.showLoader = true;
-    const aux = this.createRouteDialog.form.getRawValue();
-    const ruta = this.routestest.find(r => r.id === id);
-    ruta.estado = false;
+    this.routestest.find(r => r.id === id).estado = false;
+    localStorage.setItem("programmingRoutes", JSON.stringify(this.routestest));
     this.showLoader = false;
   }
 
   activarRuta(id) {
     this.showLoader = true;
-    const aux = this.createRouteDialog.form.getRawValue();
-    const ruta = this.routestest.find(r => r.id === id);
-    ruta.estado = true;
+    this.routestest.find(r => r.id === id).estado = true;
+    localStorage.setItem("programmingRoutes", JSON.stringify(this.routestest));
     this.showLoader = false;
   }
 
