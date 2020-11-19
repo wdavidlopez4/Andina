@@ -77,7 +77,6 @@ export class ListRouteComponent implements OnInit {
 
   routeSelected(data) {
     this.routeSelectedId = data;
-    console.log(data);
   }
 
   onShowEditRoute(route) {
@@ -155,17 +154,18 @@ export class ListRouteComponent implements OnInit {
   }
 
   onCreateStop(e, routeId) {
-    console.log(e);
-    e.ruta_id = routeId.id;
+    // console.log(e);
+    // e.ruta_id = routeId.id;
     this.showLoader = true;
-    this.routeService.createStop(e).subscribe((response) => {
-      this.showLoader = false;
-    }, error => {
-      console.log(error);
-      this.showLoader = false;
-      this.addStop(e);
-      this.createStopDialog.form.reset();
-    });
+    // this.routeService.createStop(e).subscribe((response) => {
+    //   this.showLoader = false;
+    // }, error => {
+    //   console.log(error);
+    this.addStop(e);
+    this.createStopDialog.form.reset();
+    this.showLoader = false;
+
+    // });
   }
 
   onEditStop(e) {
@@ -179,21 +179,20 @@ export class ListRouteComponent implements OnInit {
     });
   }
 
-  onDeleteStop(roueId: number) {
+  onDeleteStop(roueId: number, name: string) {
+    console.log("roueId");
     console.log(roueId);
-    this.showLoader = true;
-    this.routeService.deleteStop(roueId).subscribe((data) => {
-      this.showLoader = false;
-    }, error => {
-      console.log(error);
-      this.showLoader = false;
-    });
+    console.log("name");
+    console.log(name);
+    this.routestest[this.routeSelectedId.id - 1].paradas = this.routestest[this.routeSelectedId.id - 1].paradas.filter(x => x.nombre != name);
+    localStorage.setItem("programmingRoutes", JSON.stringify(this.routestest));
   }
 
   addRuta() {
     const aux = this.createRouteDialog.form.getRawValue();
+    let newId = this.routestest[this.routestest.length - 1].id + 1
     this.routestest.push({
-      id: 1,
+      id: newId,
       nombre: aux.nombre,
       fecha: aux.fecha,
       hora: aux.hora,
@@ -225,6 +224,7 @@ export class ListRouteComponent implements OnInit {
   }
 
   addStop(data: any) {
+    debugger;
     const aux = this.createStopDialog.form.getRawValue();
     this.routestest[this.routeSelectedId.id - 1].paradas.push({
       id: 1, nombre: aux.nombre
