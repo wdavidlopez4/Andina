@@ -87,7 +87,7 @@
                                     </ng-container>
                                     <td>{{ item?.precio }}</td>
                                     <td>
-                                        <button *ngIf="item.estado == 1" type="button" class="btn btn-outline-info" (click)="onShowAddProgramming(item.id_conductor, item.id_vehiculo)" data-toggle="modal" data-target="#addProgramming" title="Programar ruta">
+                                        <button *ngIf="item.estado == 1" type="button" class="btn btn-outline-info" (click)="onShowAddProgramming(item)" data-toggle="modal" data-target="#addProgramming" title="Programar ruta">
                     <i class="fas fa-user-clock"></i>
                   </button>
                                     </td>

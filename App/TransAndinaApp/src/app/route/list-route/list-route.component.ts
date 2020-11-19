@@ -54,7 +54,7 @@ export class ListRouteComponent implements OnInit {
     this.routestest = JSON.parse(localStorage.getItem("programmingRoutes")) as unknown as Programacion[];
     this.vehiculos = JSON.parse(localStorage.getItem("vehicles")) as unknown as Vehiculo[];
     this.personas = JSON.parse(localStorage.getItem("persons")) as unknown as Persona[];
-debugger
+
     this.routeService.getRoutes()
       .subscribe(response => {
         this.routes = response;
@@ -77,8 +77,8 @@ debugger
     this.editRouteDialog.loadFormRoute(route);
   }
 
-  onShowAddProgramming(id_persona, id_vehiculo) {
-    this.addProgrammingDialog.loadFormRoute(id_persona, id_vehiculo);
+  onShowAddProgramming(itemSelected: any) {
+    this.addProgrammingDialog.loadFormRoute(itemSelected.persona.id, itemSelected.vehiculo.id);
   }
 
   onShowEditStop(route) {
@@ -100,28 +100,38 @@ debugger
   }
 
   onEditRoute(e) {
-    console.log(e);
-    this.showLoader = true;
-    this.routeService.editRoute(e).subscribe((data) => {
-      this.showLoader = false;
-    }, error => {
-      console.log(error);
-      this.showLoader = false;
-    });
+    this.routestest[this.routeSelectedId.id - 1].fecha = e.fecha;
+    this.routestest[this.routeSelectedId.id - 1].hora = e.hora;
+    this.routestest[this.routeSelectedId.id - 1].id = e.id;
+    this.routestest[this.routeSelectedId.id - 1].nombre = e.nombre;
+    this.routestest[this.routeSelectedId.id - 1].precio = e.precio;
+
+    localStorage.setItem("programmingRoutes", JSON.stringify(this.routestest));
   }
 
 
   onAddProgramming(data) {
     console.log(data);
-    const rutaId = this.routeSelectedId.id;
-    this.showLoader = true;
-    this.routeService.createProgramingRoute({ data, rutaId }).subscribe((data) => {
-      this.showLoader = false;
-    }, error => {
-      console.log(error);
-      this.showLoader = false;
-      this.createRouteDialog.form.reset();
-    });
+    console.log("this.personas");
+    console.log(this.personas);
+
+    console.log("this.vehiculos");
+    console.log(this.vehiculos);
+
+    this.routestest[this.routeSelectedId.id - 1].persona = this.personas.filter(x => x.id == parseInt(data.id_persona))[0];
+    this.routestest[this.routeSelectedId.id - 1].vehiculo = this.vehiculos.filter(x => x.id == parseInt(data.id_vehiculo))[0];
+    localStorage.setItem("programmingRoutes", JSON.stringify(this.routestest));
+
+
+    // const rutaId = this.routeSelectedId.id;
+    // this.showLoader = true;
+    // this.routeService.createProgramingRoute({ data, rutaId }).subscribe((data) => {
+    //   this.showLoader = false;
+    // }, error => {
+    //   console.log(error);
+    //   this.showLoader = false;
+    //   this.createRouteDialog.form.reset();
+    // });
   }
 
 

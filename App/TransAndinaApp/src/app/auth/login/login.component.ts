@@ -32,20 +32,20 @@ export class LoginComponent implements OnInit {
 
   Submit() {
     this.showLoader = true;
-    this.loginService.Login(this.form.value).subscribe((data) => {
-      // debugger;
-      localStorage.setItem("token", data.token);
-      debugger;
-      this.showLoader = false;
-      this.router.navigateByUrl('/home');
-    }, error => {
-      alert("Datos incorrectos")
-      // (error.status == 400) ? alert("Datos incorrectos") : console.log(error);
-      //Bad request del api no devuelve el mensaje en HttpErrorResponse
-      console.log(error);
-      this.showLoader = false;
-      this.router.navigateByUrl('/home');
-    });
+    // this.loginService.Login(this.form.value).subscribe((data) => {
+    //   // debugger;
+    //   localStorage.setItem("token", data.token);
+    //   debugger;
+    //   this.showLoader = false;
+    //   this.router.navigateByUrl('/home');
+    // }, error => {
+    //   alert("Datos incorrectos")
+    // (error.status == 400) ? alert("Datos incorrectos") : console.log(error);
+    //Bad request del api no devuelve el mensaje en HttpErrorResponse
+    // console.log(error);
+    this.showLoader = false;
+    this.router.navigateByUrl('/home');
+    // });
   }
 
 }

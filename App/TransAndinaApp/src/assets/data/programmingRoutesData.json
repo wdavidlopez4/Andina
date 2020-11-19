@@ -9,8 +9,14 @@
         "id_persona": null,
         "id_vehiculo": null,
         "persona": {
-            "nombre": "Jhon",
-            "apellido": "Peñuela"
+            "id": 4,
+            "nit": 1098102295,
+            "nombre": "Mario",
+            "apellido": "Castiblanco ",
+            "telefono": 31681261033,
+            "direccion": "Cra 4 # 1-56",
+            "tipo_persona": 2,
+            "estado": 0
         },
         "vehiculo": {
             "id": 2,
@@ -73,8 +79,14 @@
             "estado": 0
         },
         "persona": {
-            "nombre": "Jhon",
-            "apellido": "Peñuela"
+            "id": 2,
+            "nit": 1098102295,
+            "nombre": "Juam Camilo",
+            "apellido": "Suarez ",
+            "telefono": 31681261033,
+            "direccion": "Cra 4 # 1-56",
+            "tipo_persona": 2,
+            "estado": 1
         },
         "paradas": [{
             "id": 1,
@@ -102,8 +114,14 @@
             "estado": 0
         },
         "persona": {
-            "nombre": "Jhon",
-            "apellido": "Peñuela"
+            "id": 2,
+            "nit": 1098102295,
+            "nombre": "Juam Camilo",
+            "apellido": "Suarez ",
+            "telefono": 31681261033,
+            "direccion": "Cra 4 # 1-56",
+            "tipo_persona": 2,
+            "estado": 1
         },
         "paradas": [{
             "id": 1,
@@ -131,8 +149,14 @@
             "estado": 0
         },
         "persona": {
-            "nombre": "Jhon",
-            "apellido": "Peñuela"
+            "id": 1,
+            "nit": 1098102295,
+            "nombre": "Adriana Paola",
+            "apellido": "Goyeneche ",
+            "telefono": 31681261033,
+            "direccion": "Cra 4 # 1-56",
+            "tipo_persona": 1,
+            "estado": 1
         },
         "paradas": [{
             "id": 1,
