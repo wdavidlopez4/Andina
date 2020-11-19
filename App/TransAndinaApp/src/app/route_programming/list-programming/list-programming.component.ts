@@ -29,8 +29,6 @@ export class ListProgrammingComponent implements OnInit {
 
   ngOnInit() {
     this.programmings = JSON.parse(localStorage.getItem("programmingRoutes")) as unknown as Programacion[];
-    console.log("this.programmings");
-    console.log(this.programmings);
   }
 
   programmingSelected(data) {

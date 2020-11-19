@@ -10,6 +10,7 @@ import { Route } from "@angular/router";
 import { Ruta } from "../../models/Ruta";
 import { Persona } from "../../models/Persona";
 import { Vehiculo } from "../../models/Vehiculo";
+import { Programacion } from 'src/app/models/Programacion';
 
 @Component({
   selector: 'app-list-route',
@@ -45,46 +46,7 @@ export class ListRouteComponent implements OnInit {
   ) {
   }
 
-  routestest = [
-    {
-      id: 1, nombre: 'Bogotá - cartagena', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 1, estado: 1,
-      id_persona: null,
-      id_vehiculo: null,
-      paradas: [
-        { id: 1, nombre: 'La Vega' },
-        { id: 2, nombre: 'Honda' },
-        { id: 3, nombre: 'La Dorada' },
-        { id: 4, nombre: 'Villa de Leiva' },
-        { id: 5, nombre: 'Agua Chica' },
-        { id: 6, nombre: 'Bosconia' },
-        { id: 7, nombre: 'Turbaco' },
-      ]
-    },
-    {
-      id: 2, nombre: 'Medellin - Salento', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 2, estado: 0,
-      id_persona: 1,
-      id_vehiculo: 1,
-      paradas: [
-        { id: 1, nombre: 'Terminal' },
-      ]
-    },
-    {
-      id: 3, nombre: 'Neiva - Bogotá', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 3, estado: 1,
-      id_persona: 1,
-      id_vehiculo: 1,
-      paradas: [
-        { id: 1, nombre: 'Terminal' },
-      ]
-    },
-    {
-      id: 4, nombre: 'La mesa - Girardot', fecha: '2020-10-12', hora: '08:43', precio: 20500, value: 4, estado: 1,
-      id_persona: 1,
-      id_vehiculo: 1,
-      paradas: [
-        { id: 1, nombre: 'Terminal' },
-      ]
-    }
-  ];
+  routestest: Programacion[];
 
   personas = [
     { nombre: 'John Peñuela', id: 1 },
@@ -96,6 +58,7 @@ export class ListRouteComponent implements OnInit {
   vehiculos: Vehiculo[];
 
   ngOnInit() {
+    this.routestest = JSON.parse(localStorage.getItem("programmingRoutes")) as unknown as Programacion[];
     this.vehiculos = JSON.parse(localStorage.getItem("vehicles")) as unknown as Vehiculo[];
 
     this.routeService.getRoutes()
@@ -131,16 +94,16 @@ export class ListRouteComponent implements OnInit {
   }
 
   onCreateRoute(e) {
-    console.log(e);
+    // console.log(e);
     this.showLoader = true;
-    this.routeService.createRoute(e).subscribe((data) => {
-      this.showLoader = false;
-    }, error => {
-      console.log(error);
-      this.showLoader = false;
-      this.addRuta();
-      this.createRouteDialog.form.reset();
-    });
+    // this.routeService.createRoute(e).subscribe((data) => {
+    //   this.showLoader = false;
+    // }, error => {
+    // console.log(error);
+    this.addRuta();
+    this.createRouteDialog.form.reset();
+    this.showLoader = false;
+    // });
   }
 
   onEditRoute(e) {
@@ -230,26 +193,34 @@ export class ListRouteComponent implements OnInit {
   addRuta() {
     const aux = this.createRouteDialog.form.getRawValue();
     this.routestest.push({
-      id: 1, nombre: aux.nombre, fecha: aux.fecha, hora: aux.hora, precio: aux.precio, value: 1, estado: 1,
+      id: 1,
+      nombre: aux.nombre,
+      fecha: aux.fecha,
+      hora: aux.hora,
+      precio: aux.precio,
+      value: 1,
+      estado: true,
       id_persona: 1,
       id_vehiculo: 1,
       paradas: []
     });
+
+    localStorage.setItem("programmingRoutes", JSON.stringify(this.routestest));
   }
 
   deleteruta(id) {
     this.showLoader = true;
     const aux = this.createRouteDialog.form.getRawValue();
-    const ruta = this.routestest.find(r => r.id === id)
-    ruta.estado = 0;
+    const ruta = this.routestest.find(r => r.id === id);
+    ruta.estado = false;
     this.showLoader = false;
   }
 
   activarRuta(id) {
     this.showLoader = true;
     const aux = this.createRouteDialog.form.getRawValue();
-    const ruta = this.routestest.find(r => r.id === id)
-    ruta.estado = 1;
+    const ruta = this.routestest.find(r => r.id === id);
+    ruta.estado = true;
     this.showLoader = false;
   }
 
@@ -258,6 +229,8 @@ export class ListRouteComponent implements OnInit {
     this.routestest[this.routeSelectedId.id - 1].paradas.push({
       id: 1, nombre: aux.nombre
     });
+
+    localStorage.setItem("programmingRoutes", JSON.stringify(this.routestest));
   }
 
 }
