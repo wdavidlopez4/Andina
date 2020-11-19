@@ -16,7 +16,7 @@ export class EditVehicleDialogComponent implements OnInit {
   showLoader: boolean = false;
 
   @Output()
-  editeRoute = new EventEmitter<Vehiculo>();
+  editeVehicle = new EventEmitter<Vehiculo>();
 
   constructor(
     private vehicleService: VehicleService,
@@ -53,6 +53,6 @@ export class EditVehicleDialogComponent implements OnInit {
 
   onEditVehicle() {
     const vehicle = this.form.getRawValue();
-    this.editeRoute.emit(vehicle);
+    this.editeVehicle.emit(vehicle);
   }
 }
