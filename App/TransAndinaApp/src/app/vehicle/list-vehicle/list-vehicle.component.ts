@@ -92,6 +92,7 @@ export class ListVehicleComponent implements OnInit {
     this.showLoader = true;
     const ruta = this.vehicles.find(r => r.id === id);
     ruta.estado = 0;
+    localStorage.setItem("vehicles", JSON.stringify(this.vehicles));
     this.showLoader = false;
   }
 
@@ -100,8 +101,14 @@ export class ListVehicleComponent implements OnInit {
     console.log(data)
     this.showLoader = true;
     const vehiculo = this.vehicles.find(r => r.id === data.id);
-    
-    vehiculo.estado = 0;
+    vehiculo.tipo =  data.tipo;
+    vehiculo.capacidad = data.capacidad;
+    vehiculo.marca = data.marca;
+    vehiculo.placa = data.placa;
+    vehiculo.modelo = data.modelo;
+
+    localStorage.setItem("vehicles", JSON.stringify(this.vehicles));
+
     this.showLoader = false;
   }
 
@@ -109,6 +116,7 @@ export class ListVehicleComponent implements OnInit {
     this.showLoader = true;
     const ruta = this.vehicles.find(r => r.id === id);
     ruta.estado = 1;
+    localStorage.setItem("vehicles", JSON.stringify(this.vehicles));
     this.showLoader = false;
   }
 

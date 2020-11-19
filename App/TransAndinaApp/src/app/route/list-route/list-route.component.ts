@@ -193,7 +193,6 @@ debugger
 
   deleteruta(id) {
     this.showLoader = true;
-    const aux = this.createRouteDialog.form.getRawValue();
     const ruta = this.routestest.find(r => r.id === id);
     ruta.estado = false;
     this.showLoader = false;
@@ -201,7 +200,6 @@ debugger
 
   activarRuta(id) {
     this.showLoader = true;
-    const aux = this.createRouteDialog.form.getRawValue();
     const ruta = this.routestest.find(r => r.id === id);
     ruta.estado = true;
     this.showLoader = false;

@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
       this.showLoader = false;
       this.router.navigateByUrl('/home');
     }, error => {
-      alert("Datos incorrectos")
       // (error.status == 400) ? alert("Datos incorrectos") : console.log(error);
       //Bad request del api no devuelve el mensaje en HttpErrorResponse
       console.log(error);

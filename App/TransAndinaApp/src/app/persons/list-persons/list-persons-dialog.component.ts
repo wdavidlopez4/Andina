@@ -29,15 +29,11 @@ export class ListPersonComponent implements OnInit {
   constructor(
     private personService: PersonService,
   ) {
-    this.persons = JSON.parse(localStorage.getItem("persons")) as unknown as Persona[];
   }
 
 
   ngOnInit() {
-    this.personService.getPerson()
-      .subscribe(response => {
-        this.persons = response;
-      });
+    this.persons = JSON.parse(localStorage.getItem("persons")) as unknown as Persona[];
   }
 
 
@@ -113,6 +109,7 @@ export class ListPersonComponent implements OnInit {
     this.showLoader = true;
     const persona = this.persons.find(r => r.id === id)
     persona.estado = 0;
+    localStorage.setItem("persons", JSON.stringify(this.persons));
     this.showLoader = false;
   }
 
@@ -120,6 +117,22 @@ export class ListPersonComponent implements OnInit {
     this.showLoader = true;
     const persona = this.persons.find(r => r.id === id)
     persona.estado = 1;
+    localStorage.setItem("persons", JSON.stringify(this.persons));
+    this.showLoader = false;
+  }
+
+  onEditPersona(data) {
+    console.log(data)
+    this.showLoader = true;
+    const persona = this.persons.find(r => r.id === data.id);
+    persona.nit =  data.nit;
+    persona.nombre = data.nombre;
+    persona.apellido = data.apellido;
+    persona.telefono = data.telefono;
+    persona.direccion = data.direccion;
+    persona.email = data.email;
+    persona.tipo_persona = data.tipo_persona;
+    localStorage.setItem("persons", JSON.stringify(this.persons));
     this.showLoader = false;
   }
 

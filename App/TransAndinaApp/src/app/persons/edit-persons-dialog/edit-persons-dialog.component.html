@@ -54,7 +54,7 @@
           <div class="form-group">
             <label>Dirección</label>
             <input
-              type="number"
+              type="text"
               class="form-control"
               formControlName="direccion"
               placeholder="Ingresar la Direccion"
@@ -78,7 +78,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="form.reset()">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="onEditRoute()" data-dismiss="modal"
+        <button type="button" class="btn btn-primary" (click)="onEditPerson()" data-dismiss="modal"
                 [disabled]="!form.valid">Guardar
         </button>
       </div>
