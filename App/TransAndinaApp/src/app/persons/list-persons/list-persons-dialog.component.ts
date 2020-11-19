@@ -5,6 +5,7 @@ import {Route} from "@angular/router";
 import {Persona} from "../../models/Persona";
 import {EditPersonDialogComponent } from '../edit-persons-dialog/edit-persons-dialog.component';
 import {PersonService} from "../../Service/persons/person-service";
+import {Vehiculo} from "../../models/Vehiculo";
 
 @Component({
   selector: 'app-list-person',
@@ -16,7 +17,7 @@ export class ListPersonComponent implements OnInit {
   personSelectedId: any;
   showLoader: boolean = false;
   form: FormGroup;
-  personsa: Persona[];
+  persons: Persona[];
 
   @ViewChild('createPersonDialog', {static: true})
   createPersonDialog: CreatePersonDialogComponent;
@@ -24,25 +25,21 @@ export class ListPersonComponent implements OnInit {
   @ViewChild('editPersonDialog', {static: true})
   editPersonDialog: EditPersonDialogComponent;
 
-  
+
   constructor(
     private personService: PersonService,
   ) {
+    this.persons = JSON.parse(localStorage.getItem("persons")) as unknown as Persona[];
   }
 
-  persons = [
-    {
-      id: 1, nit: 1098102295, nombre: 'Adriana Paola', apellido: 'Goyeneche ', telefono: 31681261033, direccion: 'Cra 4 # 1-56', tipo_persona: 1, estado: 1
-    },
-    
-  ];
 
   ngOnInit() {
     this.personService.getPerson()
       .subscribe(response => {
-        this.personsa = response;
+        this.persons = response;
       });
   }
+
 
   personSelected(data) {
     this.personSelectedId = data;
@@ -53,7 +50,7 @@ export class ListPersonComponent implements OnInit {
     this.editPersonDialog.loadFormPerson(person);
   }
 
-  
+
   onCreatePerson(e) {
     console.log(e);
     this.showLoader = true;
@@ -78,7 +75,7 @@ export class ListPersonComponent implements OnInit {
     });
   }
 
-  
+
   onDeletePerson(personId: number) {
     console.log(personId);
     this.showLoader = true;
@@ -101,13 +98,30 @@ export class ListPersonComponent implements OnInit {
     });
   }
 
- 
+
     addPerson() {
     const aux = this.createPersonDialog.form.getRawValue();
     this.persons.push({
-      id: 1, nit: aux.nit, nombre: aux.nombre, apellido: aux.apellido, telefono: aux.telefono, direccion: aux.direccion, tipo_persona:aux.tipo_persona, estado: 1,
+      email: "",
+      id: 1, nit: aux.nit, nombre: aux.nombre, apellido: aux.apellido, telefono: aux.telefono, direccion: aux.direccion, tipo_persona:aux.tipo_persona, estado: 1
     });
+
+      localStorage.setItem("persons", JSON.stringify(this.persons));
+    }
+
+  deletePersona(id) {
+    this.showLoader = true;
+    const persona = this.persons.find(r => r.id === id)
+    persona.estado = 0;
+    this.showLoader = false;
   }
 
-  
+  activarPersona(id) {
+    this.showLoader = true;
+    const persona = this.persons.find(r => r.id === id)
+    persona.estado = 1;
+    this.showLoader = false;
+  }
+
+
 }

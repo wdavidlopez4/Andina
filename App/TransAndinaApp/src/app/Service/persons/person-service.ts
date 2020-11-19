@@ -5,6 +5,7 @@ import {Persona} from "../../models/Persona";
 import {catchError} from "rxjs/operators";
 import {Observable, pipe, throwError as observableThrowError} from 'rxjs';
 import {Route} from "@angular/router";
+import {Vehiculo} from "../../models/Vehiculo";
 
 
 @Injectable()
@@ -18,7 +19,8 @@ export class PersonService {
 
   getPerson(): Observable<Persona[]> {
     return this.http
-      .get<Persona[]>(`${this.url}/person/get-persons`)
+      // .get<Persona[]>(`${this.url}/person/get-persons`)
+      .get<Persona[]>("assets/data/personData.json")
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 
