@@ -1,0 +1,41 @@
+[{
+        "id": 1,
+        "tipo": "Bus",
+        "marca": "Audi",
+        "modelo": "2020",
+        "placa": "fds232",
+        "capacidad": 55,
+        "value": 1,
+        "estado": 1
+    },
+    {
+        "id": 2,
+        "tipo": "Bus",
+        "marca": "Hyundai",
+        "modelo": "2010",
+        "placa": "fwf231",
+        " capacidad": 55,
+        "value": 2,
+        "estado": 0
+    },
+    {
+        "id": 3,
+        "tipo": "Bus",
+        "marca": "Maserati",
+        "modelo": "2012",
+        "placa": "fvs232",
+        " capacidad": 65,
+        "value": 3,
+        "estado": 1
+    },
+    {
+        "id": 4,
+        "tipo": "Bus",
+        "marca": "Jeep",
+        "modelo": "2012",
+        "placa": "f4s232",
+        "capacidad": 55,
+        "value": 4,
+        "estado": 1
+    }
+]

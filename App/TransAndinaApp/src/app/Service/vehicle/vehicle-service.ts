@@ -15,10 +15,15 @@ export class VehicleService {
     private http: HttpClient) {
     this.url = environment.endpoint;
   }
+  
+  // constructor(
+  //   private http: HttpClient) {
+  //   this.url = environment.endpoint;
+  // }
 
   getVehicles(): Observable<Vehiculo[]> {
     return this.http
-      .get<Vehiculo[]>(`${this.url}/route/get-vehicles`)
+      .get<Vehiculo[]>("assets/data/vehicleData.json")
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 
