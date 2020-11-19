@@ -47,20 +47,14 @@ export class ListRouteComponent implements OnInit {
   }
 
   routestest: Programacion[];
-
-  personas = [
-    { nombre: 'John Peñuela', id: 1 },
-    { nombre: 'Juan Martinez', id: 2 },
-    { nombre: 'Mario Mendoza', id: 3 },
-    { nombre: 'Antonio Grisales', id: 4 },
-  ]
-
   vehiculos: Vehiculo[];
+  personas: Persona[];
 
   ngOnInit() {
     this.routestest = JSON.parse(localStorage.getItem("programmingRoutes")) as unknown as Programacion[];
     this.vehiculos = JSON.parse(localStorage.getItem("vehicles")) as unknown as Vehiculo[];
-
+    this.personas = JSON.parse(localStorage.getItem("persons")) as unknown as Persona[];
+debugger
     this.routeService.getRoutes()
       .subscribe(response => {
         this.routes = response;

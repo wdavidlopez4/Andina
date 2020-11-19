@@ -148,7 +148,7 @@
                     type="button"
                     style="margin-left: 10px"
                     class="btn btn-danger"
-                    (click)="onDeleteVehicle(i)"
+                    (click)="deleteVehiculo(item.id)"
                     title="Borrar"
                   >
                     <i class="fas fa-trash"></i>
@@ -157,7 +157,7 @@
                     *ngIf="item.estado == 0"
                     type="button"
                     class="btn btn-outline-success"
-                    (click)="onActivateVehicle(i)"
+                    (click)="activarVehiculo(item.id)"
                     title="Desactivar vehículo"
                   >
                     <i class="fas fa-arrow-up"></i>
@@ -179,7 +179,7 @@
   </app-create-vehicle-dialog>
   <app-edit-vehicle-dialog
     #editVehicleDialog
-    (editeVehicle)="onEditVehicle($event)"
+    (editeVehicle)="onEditVehiculo($event)"
   >
   </app-edit-vehicle-dialog>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProgrammingService } from './Service/programming/programming-service';
 import { RouteService } from './Service/route/route-service';
 import { VehicleService } from './Service/vehicle/vehicle-service';
+import {PersonService} from "./Service/persons/person-service";
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent implements OnInit {
 
   constructor(private vehicleService: VehicleService,
     private programmingService: ProgrammingService,
+    private personService: PersonService,
     private routeService: RouteService) { }
 
   ngOnInit(): void {
@@ -28,6 +30,10 @@ export class AppComponent implements OnInit {
     this.vehicleService.getVehicles()
       .subscribe(response => {
         localStorage.setItem("vehicles", JSON.stringify(response));
+      });
+
+    this.personService.getPerson()
+      .subscribe(response => {
         localStorage.setItem("persons", JSON.stringify(response));
       });
   }

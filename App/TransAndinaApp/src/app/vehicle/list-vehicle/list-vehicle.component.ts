@@ -88,6 +88,29 @@ export class ListVehicleComponent implements OnInit {
     });
   }
 
+  deleteVehiculo(id) {
+    this.showLoader = true;
+    const ruta = this.vehicles.find(r => r.id === id);
+    ruta.estado = 0;
+    this.showLoader = false;
+  }
+
+
+  onEditVehiculo(data) {
+    console.log(data)
+    this.showLoader = true;
+    const vehiculo = this.vehicles.find(r => r.id === data.id);
+    
+    vehiculo.estado = 0;
+    this.showLoader = false;
+  }
+
+  activarVehiculo(id) {
+    this.showLoader = true;
+    const ruta = this.vehicles.find(r => r.id === id);
+    ruta.estado = 1;
+    this.showLoader = false;
+  }
 
   addVehiculo() {
     const aux = this.createVehicleDialog.form.getRawValue();
