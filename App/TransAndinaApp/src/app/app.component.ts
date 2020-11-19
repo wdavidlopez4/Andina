@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
     this.vehicleService.getVehicles()
       .subscribe(response => {
         localStorage.setItem("vehicles", JSON.stringify(response));
+        localStorage.setItem("persons", JSON.stringify(response));
       });
   }
   title = 'TransAndinaApp';

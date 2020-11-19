@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light bg-dark">
     <a class="navbar-brand" href="/home">TransAndina</a>
   </nav>
-  
+
   <div class="container-fluid">
     <div class="row vh-100 col-12">
       <div
@@ -21,7 +21,7 @@
               </a>
               <div class="desc">Usuarios</div>
             </div>
-  
+
             <div class="gallery">
               <a  href="/vehicle/list-vehicle" >
                 <img
@@ -33,7 +33,7 @@
               </a>
               <div class="desc">Vehículos</div>
             </div>
-  
+
             <div class="gallery">
               <a href="persons/list-persons" >
                 <img
@@ -46,7 +46,7 @@
               <div class="desc">Personas</div>
             </div>
           </div>
-  
+
           <div class="column">
             <div class="gallery">
               <a  href="route/list-route" >
@@ -59,7 +59,7 @@
               </a>
               <div class="desc">Rutas</div>
             </div>
-  
+
             <div class="gallery">
               <a  href="programming/list-programming" >
                 <img
@@ -71,7 +71,7 @@
               </a>
               <div class="desc">Programación de Rutas</div>
             </div>
-  
+
             <div class="gallery">
               <a  href="#" >
                 <img
@@ -95,70 +95,61 @@
         <div style="margin: 18% auto">
           <h1 class="text-reset">Mantenimiento de Personas</h1>
           <p>Diligencia el formulario para agregar una nueva persona</p>
-  
+
           <div class="col col-lg-12">
-            
+
             <div class="list-group">
               <button
                 type="button"
                 class="btn btn-info"
                 title="Agregar Persona"
                 data-toggle="modal"
-                data-target="#createPerson"
-              >
+                data-target="#createPerson">
                 Agregar Persona
               </button>
-
-              <br />
-
+              <br/>
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">Id</th>
                     <th scope="col">Documento</th>
                     <th scope="col">Nombres</th>
                     <th scope="col">Apellidos</th>
                     <th scope="col">Telefono</th>
                     <th scope="col">Direccion</th>
-                    <th scope="col">Tipo_Persona</th>
-                    <th scope="col"></th>
+                    <th scope="col">Tipo Persona</th>
+                    <th scope="col">Estado</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr
-                    *ngFor="let item of routes; let i = index"
-                    (click)="personSelected(item)"
-                  >
-                    <td>{{ item?.id }}</td>
-                    <td>{{ item?.nit }} / {{ item.hora }}</td>
+                    *ngFor="let item of persons; let i = index"
+                    (click)="personSelected(item)">
+                    <td>{{ item?.nit }}</td>
+                    <td>{{ item?.nombre }}</td>
+                    <td>{{ item?.apellido }}</td>
+                    <td>{{ item?.telefono }}</td>
+                    <td>{{ item?.direccion }}</td>
+                    <ng-container *ngIf="item.tipo_persona == 1">
+                      <td>Usuario SIT</td>
+                    </ng-container>
+                    <ng-container *ngIf="item.tipo_persona == 2">
+                      <td>Conductor</td>
+                    </ng-container>
                     <ng-container *ngIf="item.estado == 1">
                       <td>Activo</td>
                     </ng-container>
                     <ng-container *ngIf="item.estado == 0">
                       <td>Inactivo</td>
                     </ng-container>
-                    <td>{{ item?.precio }}</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-outline-info"
-                        (click)="onShowAddProgramming(item)"
-                        data-toggle="modal"
-                        data-target="#addProgramming"
-                        title="Programar ruta"
-                      >
-                        <i class="fas fa-user-clock"></i>
-                      </button>
-                    </td>
                     <td>
                       <button
                         *ngIf="item.estado == 1"
                         type="button"
                         class="btn btn-primary"
-                        (click)="onShowEditRoute(item)"
+                        (click)="onShowEditPerson(item)"
                         data-toggle="modal"
-                        data-target="#editRoute"
+                        data-target="#editPerson"
                         title="Editar ruta"
                       >
                         <i class="fas fa-edit"></i>
@@ -168,7 +159,7 @@
                         type="button"
                         style="margin-left: 10px"
                         class="btn btn-danger"
-                        (click)="onDeleteRoute(i)"
+                        (click)="deletePersona(item.id)"
                         title="Borrar"
                       >
                         <i class="fas fa-trash"></i>
@@ -177,7 +168,7 @@
                         *ngIf="item.estado == 0"
                         type="button"
                         class="btn btn-outline-success"
-                        (click)="onActivateRoute(i)"
+                        (click)="activarPersona(item.id)"
                         title="Desactivar ruta"
                       >
                         <i class="fas fa-arrow-up"></i>
@@ -188,7 +179,7 @@
               </table>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -197,7 +188,10 @@
     <app-create-person-dialog
       #createPersonDialog
       (createPerson)="onCreatePerson($event)"
-    >
-    
+    ></app-create-person-dialog>
+    <app-edit-persons-dialog
+    #editPersonDialog>
 
-  
+    </app-edit-persons-dialog>
+
+
