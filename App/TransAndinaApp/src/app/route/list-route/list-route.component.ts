@@ -169,21 +169,11 @@ export class ListRouteComponent implements OnInit {
   }
 
   onEditStop(e) {
-    console.log(e);
-    this.showLoader = true;
-    this.routeService.editStop(e).subscribe((data) => {
-      this.showLoader = false;
-    }, error => {
-      console.log(error);
-      this.showLoader = false;
-    });
+    this.routestest[this.routeSelectedId.id - 1].paradas.filter(x => x.id == e.id)[0].nombre = e.nombre;
+    localStorage.setItem("programmingRoutes", JSON.stringify(this.routestest));
   }
 
   onDeleteStop(roueId: number, name: string) {
-    console.log("roueId");
-    console.log(roueId);
-    console.log("name");
-    console.log(name);
     this.routestest[this.routeSelectedId.id - 1].paradas = this.routestest[this.routeSelectedId.id - 1].paradas.filter(x => x.nombre != name);
     localStorage.setItem("programmingRoutes", JSON.stringify(this.routestest));
   }
@@ -224,10 +214,14 @@ export class ListRouteComponent implements OnInit {
   }
 
   addStop(data: any) {
-    debugger;
     const aux = this.createStopDialog.form.getRawValue();
+    let newId = 1;
+    if (this.routestest[this.routeSelectedId.id - 1].paradas.length > 1) {
+      newId = this.routestest[this.routeSelectedId.id - 1].paradas[this.routestest[this.routeSelectedId.id - 1].paradas.length - 1].id + 1;
+    }
+
     this.routestest[this.routeSelectedId.id - 1].paradas.push({
-      id: 1, nombre: aux.nombre
+      id: newId, nombre: aux.nombre
     });
 
     localStorage.setItem("programmingRoutes", JSON.stringify(this.routestest));
