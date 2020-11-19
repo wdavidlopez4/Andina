@@ -1,0 +1,142 @@
+[{
+        "id": 1,
+        "nombre": "Bogotá - cartagena",
+        "fecha": "2020-10-12",
+        "hora": "08:43",
+        "precio": 20500,
+        "value": 1,
+        "estado": 1,
+        "id_persona": null,
+        "id_vehiculo": null,
+        "persona": {
+            "nombre": "Jhon",
+            "apellido": "Peñuela"
+        },
+        "vehiculo": {
+            "id": 2,
+            "tipo": "Bus",
+            "marca": "Hyundai",
+            "modelo": "2010",
+            "placa": "fwf231",
+            " capacidad": 55,
+            "value": 2,
+            "estado": 0
+        },
+        "paradas": [{
+                "id": 1,
+                "nombre": "La Vega"
+            },
+            {
+                "id": 2,
+                "nombre": "Honda"
+            },
+            {
+                "id": 3,
+                "nombre": "La Dorada"
+            },
+            {
+                "id": 4,
+                "nombre": "Villa de Leiva"
+            },
+            {
+                "id": 5,
+                "nombre": "Agua Chica"
+            },
+            {
+                "id": 6,
+                "nombre": "Bosconia"
+            },
+            {
+                "id": 7,
+                "nombre": "Turbaco"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "nombre": "Medellin - Salento",
+        "fecha": "2020-10-12",
+        "hora": "08:43",
+        "precio": 20500,
+        "value": 2,
+        "estado": 0,
+        "id_persona": 1,
+        "id_vehiculo": 1,
+        "vehiculo": {
+            "id": 2,
+            "tipo": "Bus",
+            "marca": "Hyundai",
+            "modelo": "2010",
+            "placa": "fwf231",
+            " capacidad": 55,
+            "value": 2,
+            "estado": 0
+        },
+        "persona": {
+            "nombre": "Jhon",
+            "apellido": "Peñuela"
+        },
+        "paradas": [{
+            "id": 1,
+            "nombre": "Terminal"
+        }]
+    },
+    {
+        "id": 3,
+        "nombre": "Neiva - Bogotá",
+        "fecha": "2020-10-12",
+        "hora": "08:43",
+        "precio": 20500,
+        "value": 3,
+        "estado": 1,
+        "id_persona": 1,
+        "id_vehiculo": 1,
+        "vehiculo": {
+            "id": 2,
+            "tipo": "Bus",
+            "marca": "Hyundai",
+            "modelo": "2010",
+            "placa": "fwf231",
+            " capacidad": 55,
+            "value": 2,
+            "estado": 0
+        },
+        "persona": {
+            "nombre": "Jhon",
+            "apellido": "Peñuela"
+        },
+        "paradas": [{
+            "id": 1,
+            "nombre": "Terminal"
+        }]
+    },
+    {
+        "id": 4,
+        "nombre": "La mesa - Girardot",
+        "fecha": "2020-10-12",
+        "hora": "08:43",
+        "precio": 20500,
+        "value": 4,
+        "estado": 1,
+        "id_persona": 1,
+        "id_vehiculo": 1,
+        "vehiculo": {
+            "id": 2,
+            "tipo": "Bus",
+            "marca": "Hyundai",
+            "modelo": "2010",
+            "placa": "fwf231",
+            " capacidad": 55,
+            "value": 2,
+            "estado": 0
+        },
+        "persona": {
+            "nombre": "Jhon",
+            "apellido": "Peñuela"
+        },
+        "paradas": [{
+            "id": 1,
+            "nombre": "Terminal"
+        }]
+    }
+]

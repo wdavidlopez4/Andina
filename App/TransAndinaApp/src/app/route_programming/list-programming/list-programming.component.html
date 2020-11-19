@@ -1,126 +1,92 @@
 <nav class="navbar navbar-light bg-dark">
-  <a class="navbar-brand" href="/home">TransAndina</a>
+    <a class="navbar-brand" href="/home">TransAndina</a>
 </nav>
 
 <div class="container-fluid">
-  <div class="row vh-100 col-12">
-    <div
-      class="col-md-6 text-center py-5 d-flex flex-column justify-content-center auth-bg-section"
-      style="text-align: center">
-      <div style="margin: 0 auto">
-        <div class="column">
-          <div class="gallery">
-            <a href="">
-              <img
-                src="assets/imgs/usuario.png"
-                alt="Cinque Terre"
-                width="600"
-                height="400"
-              />
-            </a>
-            <div class="desc">Usuarios</div>
-          </div>
+    <div class="row vh-100 col-12">
+        <div class="col-md-6 text-center py-5 d-flex flex-column justify-content-center auth-bg-section" style="text-align: center">
+            <div style="margin: 0 auto">
+                <div class="column">
+                    <div class="gallery">
+                        <a href="">
+                            <img src="assets/imgs/usuario.png" alt="Cinque Terre" width="600" height="400" />
+                        </a>
+                        <div class="desc">Usuarios</div>
+                    </div>
 
-          <div class="gallery">
-            <a href="/vehicle/list-vehicle">
-              <img
-                src="assets/imgs/autobus.png"
-                alt="Forest"
-                width="600"
-                height="400"
-              />
-            </a>
-            <div class="desc">Vehículos</div>
-          </div>
+                    <div class="gallery">
+                        <a href="/vehicle/list-vehicle">
+                            <img src="assets/imgs/autobus.png" alt="Forest" width="600" height="400" />
+                        </a>
+                        <div class="desc">Vehículos</div>
+                    </div>
 
-          <div class="gallery">
-            <a href="/persons/list-persons">
-              <img
-                src="assets/imgs/conductor.png"
-                alt="Northern Lights"
-                width="600"
-                height="400"
-              />
-            </a>
-            <div class="desc">Personas</div>
-          </div>
+                    <div class="gallery">
+                        <a href="/persons/list-persons">
+                            <img src="assets/imgs/conductor.png" alt="Northern Lights" width="600" height="400" />
+                        </a>
+                        <div class="desc">Personas</div>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="gallery" routerLinkActive="active">
+                        <a [routerLink]="['/route/list-route']">
+                            <img src="assets/imgs/camino-adelante-perspectiva-recta.png" alt="Mountains" width="600" height="400" />
+                        </a>
+                        <div class="desc">Administración de rutas</div>
+                    </div>
+
+                    <div class="gallery">
+                        <a href="#">
+                            <img src="assets/imgs/calendario.png" alt="Mountains" width="600" height="400" />
+                        </a>
+                        <div class="desc">Rutas</div>
+                    </div>
+
+                    <div class="gallery">
+                        <a href="#">
+                            <img src="assets/imgs/boleto.png" alt="Mountains" width="600" height="400" />
+                        </a>
+                        <div class="desc">Gestión de Tickets</div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="col-md-6 text-center justify-content-center auth-bg-section margin-left: -20px;" style="margin-left: -30px">
+            <div style="margin: 18% auto">
+                <h1 class="text-reset">Rutas</h1>
 
-        <div class="column">
-          <div class="gallery" routerLinkActive="active">
-            <a [routerLink]="['/route/list-route']">
-              <img
-                src="assets/imgs/camino-adelante-perspectiva-recta.png"
-                alt="Mountains"
-                width="600"
-                height="400"
-              />
-            </a>
-            <div class="desc">Administración de rutas</div>
-          </div>
-
-          <div class="gallery">
-            <a href="#">
-              <img
-                src="assets/imgs/calendario.png"
-                alt="Mountains"
-                width="600"
-                height="400"
-              />
-            </a>
-            <div class="desc">Rutas</div>
-          </div>
-
-          <div class="gallery">
-            <a href="#">
-              <img
-                src="assets/imgs/boleto.png"
-                alt="Mountains"
-                width="600"
-                height="400"
-              />
-            </a>
-            <div class="desc">Gestión de Tickets</div>
-          </div>
+                <div class="col col-lg-12">
+                    <div class="list-group">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Fecha/Hora</th>
+                                    <th scope="col">Conductor</th>
+                                    <th scope="col">Vehiculo</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of programmings; let i = index" (click)="programmingSelected(item)">
+                                    <td>{{ item?.nombre }}</td>
+                                    <td>{{ item?.fecha }} / {{ item.hora }}</td>
+                                    <td>{{ item?.persona?.nombre }} {{ item?.persona?.apellido }}</td>
+                                    <td>{{ item?.vehiculo?.marca }}</td>
+                                    <td>{{ item?.estado }}</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="col-md-6 text-center justify-content-center auth-bg-section margin-left: -20px;" style="margin-left: -30px">
-      <div style="margin: 18% auto">
-        <h1 class="text-reset">Rutas</h1>
-
-        <div class="col col-lg-12">
-          <div class="list-group">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Fecha/Hora</th>
-                  <th scope="col">Conductor</th>
-                  <th scope="col">Vehiculo</th>
-                  <th scope="col">Estado</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  *ngFor="let item of programmingstest; let i = index"
-                  (click)="programmingSelected(item)">
-                  <td>{{ item?.nombre }}</td>
-                  <td>{{ item?.fecha }} / {{ item.hora }}</td>
-                  <td>{{ item?.conductor?.nombre }}</td>
-                  <td>{{ item?.vehiculo?.marca }}</td>
-                  <td>{{ item?.estado }}</td>
-                  <td>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--<pre>{{routes | json}}</pre>-->
-  <app-spinner [show]="showLoader"></app-spinner>
+    <!--<pre>{{routes | json}}</pre>-->
+    <app-spinner [show]="showLoader"></app-spinner>
 </div>

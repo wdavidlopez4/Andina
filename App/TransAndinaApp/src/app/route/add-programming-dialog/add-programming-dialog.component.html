@@ -1,41 +1,34 @@
 <div class="modal fade" id="addProgramming" tabindex="-1" aria-labelledby="addProgramming" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Programar ruta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Programar ruta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="form">
-          <div class="form-group">
-            <label>Conductor</label>
-            <select
-              class="form-control"
-              placeholder="Seleccione el conductor"
-              formControlName="id_persona">
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form">
+                    <div class="form-group">
+                        <label>Conductor</label>
+                        <select class="form-control" placeholder="Seleccione el conductor" formControlName="id_persona">
               <option [value]="item.id" *ngFor="let item of conductores">{{item?.nombre}}</option>
             </select>
-          </div>
-          <div class="form-group">
-            <label >Vehículo</label>
-            <select
-              class="form-control"
-              formControlName="id_vehiculo"
-              placeholder="Seleccione el vehículo">
-              <option [value]="item.id" *ngFor="let item of vehiculos">{{item?.nombre}}</option>
+                    </div>
+                    <div class="form-group">
+                        <label>Vehículo</label>
+                        <select class="form-control" formControlName="id_vehiculo" placeholder="Seleccione el vehículo">
+              <option [value]="item.id" *ngFor="let item of vehiculos">{{item?.marca}} - {{item?.modelo}} - {{item?.modelo}}</option>
             </select>
-          </div>
-<!--          <pre>{{form.value | json}}</pre>-->
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="form.reset()">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="onAddProgramming()" data-dismiss="modal"
-                [disabled]="!form.valid">Guardar
+                    </div>
+                    <!--          <pre>{{form.value | json}}</pre>-->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="form.reset()">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="onAddProgramming()" data-dismiss="modal" [disabled]="!form.valid">Guardar
         </button>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

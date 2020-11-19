@@ -25,15 +25,10 @@ export class ListVehicleComponent implements OnInit {
   @ViewChild('editVehicleDialog', { static: true })
   editVehicleDialog: EditVehicleDialogComponent;
 
-  constructor(private vehicleService: VehicleService) {}
+  constructor(private vehicleService: VehicleService) { }
 
   ngOnInit() {
     this.vehicles = JSON.parse(localStorage.getItem("vehicles")) as unknown as Vehiculo[];
-    // this.vehicleService.getVehicles()
-    //   .subscribe(response => {
-    //     localStorage.setItem("vehicles", JSON.stringify(response));
-    //     this.vehicles = response;
-    //   });
   }
 
   vehicleSelected(data) {
@@ -47,16 +42,17 @@ export class ListVehicleComponent implements OnInit {
 
 
   onCreateVehicle(e) {
-    console.log(e);
+    // console.log(e);
     this.showLoader = true;
-    this.vehicleService.createVehicle(e).subscribe((data) => {
-      this.showLoader = false;
-    }, error => {
-      console.log(error);
-      this.showLoader = false;
-      this.addVehiculo();
-      this.createVehicleDialog.form.reset();
-    });
+    // this.vehicleService.createVehicle(e).subscribe((data) => {
+    //   this.showLoader = false;
+    // }, error => {
+    // console.log(error);
+    this.addVehiculo();
+    this.createVehicleDialog.form.reset();
+    this.showLoader = false;
+
+    // });
   }
 
   onEditVehicle(e) {

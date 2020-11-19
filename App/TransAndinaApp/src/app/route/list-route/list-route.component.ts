@@ -1,15 +1,15 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {RouteService} from "../../Service/route/route-service";
-import {CreateRouteDialogComponent} from "../create-route-dialog/create-route-dialog.component";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {EditRouteDialogComponent} from "../edit-route-dialog/edit-route-dialog.component";
-import {AddProgrammingDialogComponent} from "../add-programming-dialog/add-programming-dialog.component";
-import {CreateStopDialogComponent} from "../create-stop-dialog/create-stop-dialog.component";
-import {EditStopDialogComponent} from "../edit-stop-dialog/edit-stop-dialog.component";
-import {Route} from "@angular/router";
-import {Ruta} from "../../models/Ruta";
-import {Persona} from "../../models/Persona";
-import {Vehiculo} from "../../models/Vehiculo";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { RouteService } from "../../Service/route/route-service";
+import { CreateRouteDialogComponent } from "../create-route-dialog/create-route-dialog.component";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { EditRouteDialogComponent } from "../edit-route-dialog/edit-route-dialog.component";
+import { AddProgrammingDialogComponent } from "../add-programming-dialog/add-programming-dialog.component";
+import { CreateStopDialogComponent } from "../create-stop-dialog/create-stop-dialog.component";
+import { EditStopDialogComponent } from "../edit-stop-dialog/edit-stop-dialog.component";
+import { Route } from "@angular/router";
+import { Ruta } from "../../models/Ruta";
+import { Persona } from "../../models/Persona";
+import { Vehiculo } from "../../models/Vehiculo";
 
 @Component({
   selector: 'app-list-route',
@@ -25,19 +25,19 @@ export class ListRouteComponent implements OnInit {
   persons: Persona[];
   vehicles: Vehiculo[];
 
-  @ViewChild('createRouteDialog', {static: true})
+  @ViewChild('createRouteDialog', { static: true })
   createRouteDialog: CreateRouteDialogComponent;
 
-  @ViewChild('editRouteDialog', {static: true})
+  @ViewChild('editRouteDialog', { static: true })
   editRouteDialog: EditRouteDialogComponent;
 
-  @ViewChild('addProgrammingDialog', {static: true})
+  @ViewChild('addProgrammingDialog', { static: true })
   addProgrammingDialog: AddProgrammingDialogComponent;
 
-  @ViewChild('createStopDialog', {static: true})
+  @ViewChild('createStopDialog', { static: true })
   createStopDialog: CreateStopDialogComponent;
 
-  @ViewChild('editStopDialog', {static: true})
+  @ViewChild('editStopDialog', { static: true })
   editStopDialog: EditStopDialogComponent;
 
   constructor(
@@ -51,13 +51,13 @@ export class ListRouteComponent implements OnInit {
       id_persona: null,
       id_vehiculo: null,
       paradas: [
-        {id: 1, nombre: 'La Vega'},
-        {id: 2, nombre: 'Honda'},
-        {id: 3, nombre: 'La Dorada'},
-        {id: 4, nombre: 'Villa de Leiva'},
-        {id: 5, nombre: 'Agua Chica'},
-        {id: 6, nombre: 'Bosconia'},
-        {id: 7, nombre: 'Turbaco'},
+        { id: 1, nombre: 'La Vega' },
+        { id: 2, nombre: 'Honda' },
+        { id: 3, nombre: 'La Dorada' },
+        { id: 4, nombre: 'Villa de Leiva' },
+        { id: 5, nombre: 'Agua Chica' },
+        { id: 6, nombre: 'Bosconia' },
+        { id: 7, nombre: 'Turbaco' },
       ]
     },
     {
@@ -65,7 +65,7 @@ export class ListRouteComponent implements OnInit {
       id_persona: 1,
       id_vehiculo: 1,
       paradas: [
-        {id: 1, nombre: 'Terminal'},
+        { id: 1, nombre: 'Terminal' },
       ]
     },
     {
@@ -73,7 +73,7 @@ export class ListRouteComponent implements OnInit {
       id_persona: 1,
       id_vehiculo: 1,
       paradas: [
-        {id: 1, nombre: 'Terminal'},
+        { id: 1, nombre: 'Terminal' },
       ]
     },
     {
@@ -81,27 +81,23 @@ export class ListRouteComponent implements OnInit {
       id_persona: 1,
       id_vehiculo: 1,
       paradas: [
-        {id: 1, nombre: 'Terminal'},
+        { id: 1, nombre: 'Terminal' },
       ]
     }
   ];
 
   personas = [
-    {nombre: 'John Peñuela', id: 1},
-    {nombre: 'Juan Martinez', id: 2},
-    {nombre: 'Mario Mendoza', id: 3},
-    {nombre: 'Antonio Grisales', id: 4},
+    { nombre: 'John Peñuela', id: 1 },
+    { nombre: 'Juan Martinez', id: 2 },
+    { nombre: 'Mario Mendoza', id: 3 },
+    { nombre: 'Antonio Grisales', id: 4 },
   ]
 
-  vehiculos = [
-    {nombre: 'Mazda', id: 1},
-    {nombre: 'Ford', id: 2},
-    {nombre: 'Nissan', id: 3},
-    {nombre: 'Renault', id: 4},
-  ]
-
+  vehiculos: Vehiculo[];
 
   ngOnInit() {
+    this.vehiculos = JSON.parse(localStorage.getItem("vehicles")) as unknown as Vehiculo[];
+
     this.routeService.getRoutes()
       .subscribe(response => {
         this.routes = response;
@@ -163,7 +159,7 @@ export class ListRouteComponent implements OnInit {
     console.log(data);
     const rutaId = this.routeSelectedId.id;
     this.showLoader = true;
-    this.routeService.createProgramingRoute({data, rutaId}).subscribe((data) => {
+    this.routeService.createProgramingRoute({ data, rutaId }).subscribe((data) => {
       this.showLoader = false;
     }, error => {
       console.log(error);

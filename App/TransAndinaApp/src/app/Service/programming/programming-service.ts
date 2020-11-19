@@ -18,7 +18,7 @@ export class ProgrammingService {
 
   getProgrammings(): Observable<Programacion[]> {
     return this.http
-      .get<Programacion[]>(`${this.url}/route/get-programmings`)
+      .get<Programacion[]>("assets/data/programmingRoutesData.json")
       .pipe(catchError(error => observableThrowError(error.error)));
   }
 
