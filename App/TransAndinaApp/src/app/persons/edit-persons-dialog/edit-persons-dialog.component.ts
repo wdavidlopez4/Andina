@@ -41,7 +41,6 @@ export class EditPersonDialogComponent implements OnInit {
 
   loadFormPerson(person: Persona) {
     this.form = this.fb.group({
-      
       id: [person.id, Validators.required],
       nit: [person.nit, Validators.required],
       nombre: [person.nombre,Validators.required],
@@ -50,8 +49,6 @@ export class EditPersonDialogComponent implements OnInit {
       direccion: [person.direccion, Validators.required],
       tipo_persona: [person.tipo_persona, Validators.required],
       estado: [person.estado, Validators.required],
-      
-
     });
   }
 

@@ -7,5 +7,5 @@ export class Persona {
   direccion: string;
   email: string;
   tipo_persona: number;
-  estado: boolean;
+  estado: number;
 }
